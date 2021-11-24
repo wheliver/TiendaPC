@@ -9,15 +9,26 @@ ArrayList<Combos>miscombos;
 ArrayList<Factura>misfacturas;
 ArrayList<Cliente>misclientes;
 ArrayList<OrdenCompra>mis_orden;
+ArrayList<Componente>miscomponentes;
+public static Tienda instanciaGlobal = null;
+private int generadorcodigoCompo;
 
-public Tienda(ArrayList<Combos> miscombos, ArrayList<Factura> misfacturas, ArrayList<Cliente> misclientes) {
+public Tienda() {
 	super();
 	this.miscombos =  new ArrayList<Combos>();
 	this.misfacturas =  new ArrayList<Factura>();
 	this.misclientes =  new ArrayList<Cliente>();
 	this.mis_orden = new ArrayList<OrdenCompra>();
+	this.miscomponentes = new ArrayList<Componente>();
 	this.cantClientesReal=0;
 }
+//patron singelton
+	public static Tienda getInstance() {
+		if(instanciaGlobal == null) {
+			instanciaGlobal = new Tienda();
+		}
+		return instanciaGlobal;
+	}
 public ArrayList<Combos> getMiscombos() {
 	return miscombos;
 }
@@ -35,6 +46,24 @@ public void setMisfacturas(ArrayList<Factura> misfacturas) {
 }
 public void setMisclientes(ArrayList<Cliente> misclientes) {
 	this.misclientes = misclientes;
+}
+public int getCantClientesReal() {
+	return cantClientesReal;
+}
+public void setCantClientesReal(int cantClientesReal) {
+	this.cantClientesReal = cantClientesReal;
+}
+public static Tienda getInstanciaGlobal() {
+	return instanciaGlobal;
+}
+public static void setInstanciaGlobal(Tienda instanciaGlobal) {
+	Tienda.instanciaGlobal = instanciaGlobal;
+}
+public int getGeneradorcodigoCompo() {
+	return generadorcodigoCompo;
+}
+public void setGeneradorcodigoCompo(int generadorcodigoCompo) {
+	this.generadorcodigoCompo = generadorcodigoCompo;
 }
 public void crearCliente(String nombre, String direccion ,String telefono ,String rnc ,String cedula ,float limiteCredito ,float cuentasxCobrar) {
 	Cliente primer = new Cliente( nombre,direccion,telefono,rnc,cedula,limiteCredito , cuentasxCobrar);
@@ -75,5 +104,9 @@ public void CrearOrdendecompra(String codigo, Date fecha, String estado, int can
 		Proveedor proveedor, String tipodepago) {
 	OrdenCompra orde = new OrdenCompra(codigo, fecha, estado, cantidad, compo, preciounitario, proveedor, tipodepago);
 	mis_orden.add(orde);
+}
+public void introducirComponente(Componente compo) {
+	miscomponentes.add(compo);	
+	setGeneradorcodigoCompo(getGeneradorcodigoCompo()+1);
 }
 };
