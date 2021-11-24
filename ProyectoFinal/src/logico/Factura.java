@@ -1,7 +1,5 @@
 package logico;
-
 import java.util.ArrayList;
-
 public class Factura {
 	private String Codigo;
 	private float LimiteCredito;
