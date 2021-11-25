@@ -1,34 +1,28 @@
 package Visual;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import logico.Cliente;
 import logico.Factura;
+import logico.Cliente;
 import logico.Tienda;
 
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JTextField;
-
-public class Factura extends JDialog {
+public class LisFactura extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
@@ -46,7 +40,7 @@ public class Factura extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Factura dialog = new Factura();
+			LisFactura dialog = new LisFactura();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -57,7 +51,7 @@ public class Factura extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Factura() {
+	public LisFactura() {
 		setTitle("Listado de facturas");
 		setBounds(100, 100, 755, 585);
 		getContentPane().setLayout(new BorderLayout());
@@ -73,7 +67,7 @@ public class Factura extends JDialog {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(0, 0, 720, 478);
+		scrollPane.setBounds(248, 11, 720, 478);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -111,6 +105,7 @@ public class Factura extends JDialog {
 				int select = table.getSelectedRow();
 				if(select!= -1) 
 				{
+					
 				selected = Tienda.getInstance().buscarFacturaCodigo((String) table.getValueAt(select, 0));
 				 ArrayList<String> rr = new  ArrayList<String>();
 				 String tipo="";
@@ -146,7 +141,7 @@ public class Factura extends JDialog {
 	if(clientt==null) {
 		JOptionPane.showMessageDialog(null,"ESTE CLIENTE NUNCA A REALIZADO UNA COMPRA POR FAVOR COMPRE PARA TENER FACTURAS");
 	}else{
-		 for (logico.Factura pu : Tienda.getInstance().getMisfacturas()){
+		 for (Factura pu : Tienda.getInstance().getMisfacturas()){
 			
 			 if(pu.getCliente().getCedula().equalsIgnoreCase(clientt.getCedula()) ) {
 			row[0]=pu.getCodigo();
