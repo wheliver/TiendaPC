@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Factura {
 	private String Codigo;
 	private float LimiteCredito;
+	private float preciototal;
 	Usuario vendedor;
 	ArrayList<Combos>miscombos;
 	ArrayList<Componente>miscomponentes;
@@ -26,6 +27,9 @@ public class Factura {
 	}
 	public float getLimiteCredito() {
 		return LimiteCredito;
+	}
+	public float getpreciototal() {
+		return preciototal;
 	}
 	public Usuario getVendedor() {
 		return vendedor;
@@ -69,7 +73,9 @@ public class Factura {
 	public void setPagado(boolean pagado) {
 		this.pagado = pagado;
 	}
-	
+	public float setpreciototal() {
+		return preciototal;
+	}
 	
 
 }

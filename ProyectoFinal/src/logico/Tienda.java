@@ -109,4 +109,46 @@ public void introducirComponente(Componente compo) {
 	miscomponentes.add(compo);	
 	setGeneradorcodigoCompo(getGeneradorcodigoCompo()+1);
 }
+public Cliente BuscarCliente(String text) {
+	Cliente cliente = null;
+	boolean encontrado = false;
+	int indexBuscador=0;
+	
+	while (!encontrado && indexBuscador<misclientes.size()) {
+		if(misclientes.get(indexBuscador).getCedula().equalsIgnoreCase(text)) {				
+			cliente=misclientes.get(indexBuscador);
+			encontrado = true;				
+		}
+		indexBuscador++;
+	}
+	return cliente;
+}
+public Factura buscarFacturaCliente(Cliente clien) {
+		Factura aux= null;
+		boolean encontrado = false;
+		int indexBuscador=0;
+		
+		while (!encontrado && indexBuscador<misfacturas.size()) {
+			if(misfacturas.get(indexBuscador).getCliente() == clien) {
+				aux = misfacturas.get(indexBuscador);
+				encontrado = true;				
+			}
+			indexBuscador++;
+		}
+		return aux;	
+	}
+public Factura buscarFacturaCodigo(String codigo) {
+	Factura aux= null;
+	boolean encontrado = false;
+	int indexBuscador=0;
+	
+	while (!encontrado && indexBuscador<misfacturas.size()) {
+		if(misfacturas.get(indexBuscador).getCodigo().equalsIgnoreCase(codigo)) {
+			aux = misfacturas.get(indexBuscador);
+			encontrado = true;				
+		}
+		indexBuscador++;
+	}
+	return aux;		
+}
 };
