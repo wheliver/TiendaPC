@@ -1,13 +1,15 @@
 package logico;
 
 public class Componente {
+protected String nombre;
 protected float precio;
 protected int cantidadDisponible;
 protected int numeroserie;
 protected int cantidadminima;
 Proveedor proveedor;
-public Componente(float precio, int cantidadDisponible, int numeroserie, int cantidadminima, Proveedor proveedor) {
+public Componente(String nombre,float precio, int cantidadDisponible, int numeroserie, int cantidadminima, Proveedor proveedor) {
 	super();
+	this.nombre= nombre;
 	this.precio = precio;
 	this.cantidadDisponible = cantidadDisponible;
 	this.numeroserie = numeroserie;
@@ -43,5 +45,11 @@ public void setCantidadminima(int cantidadminima) {
 }
 public void setProveedor(Proveedor proveedor) {
 	this.proveedor = proveedor;
+}
+public String getNombre() {
+	return nombre;
+}
+public void setNombre(String nombre) {
+	this.nombre = nombre;
 }
 }

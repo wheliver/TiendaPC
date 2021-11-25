@@ -151,4 +151,18 @@ public Factura buscarFacturaCodigo(String codigo) {
 	}
 	return aux;		
 }
+public Componente buscarcomponente(String codigo) {
+	Componente aux= null;
+	boolean encontrado = false;
+	int indexBuscador=0;
+	
+	while (!encontrado && indexBuscador<miscomponentes.size()) {
+		if(miscomponentes.get(indexBuscador).nombre.equalsIgnoreCase(codigo)) {
+			aux = miscomponentes.get(indexBuscador);
+			encontrado = true;				
+		}
+		indexBuscador++;
+	}
+	return aux;		
+}
 };

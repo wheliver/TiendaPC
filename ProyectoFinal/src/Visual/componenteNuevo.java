@@ -47,6 +47,7 @@ public class componenteNuevo extends JDialog {
 	private JSpinner spnprecio;
 	private JSpinner spncantidad;
 	private JSpinner spnMinima;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -71,7 +72,7 @@ public class componenteNuevo extends JDialog {
 		
 		setResizable(false);
 		setTitle(".:. INTRODUCION DE NUEVO COMPONENTE .:.");
-		setBounds(100, 100, 450, 472);
+		setBounds(100, 100, 530, 472);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Introcion de Componente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -81,7 +82,7 @@ public class componenteNuevo extends JDialog {
 			panel5 = new JPanel();
 			panel5.setLayout(null);
 			panel5.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel5.setBounds(6, 229, 422, 119);
+			panel5.setBounds(6, 229, 508, 119);
 			contentPanel.add(panel5);
 			{
 				JLabel lblMarca = new JLabel("Marca");
@@ -128,20 +129,20 @@ public class componenteNuevo extends JDialog {
 		}
 		{
 			panel = new JPanel();
-			panel.setBounds(6, 23, 422, 143);
+			panel.setBounds(6, 23, 508, 143);
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
 				JLabel lblPrecio = new JLabel("Precio ");
-				lblPrecio.setBounds(10, 14, 104, 15);
+				lblPrecio.setBounds(362, 71, 104, 15);
 				lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 12));
 				panel.add(lblPrecio);
 			}
 			{
 				spnprecio = new JSpinner();
 				spnprecio.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
-				spnprecio.setBounds(10, 40, 136, 20);
+				spnprecio.setBounds(362, 97, 136, 20);
 				panel.add(spnprecio);
 			}
 			{
@@ -166,6 +167,16 @@ public class componenteNuevo extends JDialog {
 			spnMinima.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 			spnMinima.setBounds(178, 97, 136, 20);
 			panel.add(spnMinima);
+			
+			JLabel lblNombreDelComponente = new JLabel("Nombre del Componente ");
+			lblNombreDelComponente.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			lblNombreDelComponente.setBounds(10, 11, 155, 15);
+			panel.add(lblNombreDelComponente);
+			
+			textField = new JTextField();
+			textField.setBounds(10, 37, 488, 20);
+			panel.add(textField);
+			textField.setColumns(10);
 		}
 		{
 			panel4 = new JPanel();
@@ -199,7 +210,7 @@ public class componenteNuevo extends JDialog {
 		{
 			panel2 = new JPanel();
 			panel2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel2.setBounds(6, 177, 422, 41);
+			panel2.setBounds(6, 177, 508, 41);
 			contentPanel.add(panel2);
 			panel2.setLayout(null);
 			{

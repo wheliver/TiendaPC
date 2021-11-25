@@ -8,9 +8,9 @@ public class TarjetaMadre extends Componente {
 	private String tipoconector;
 	private String tipomemoriaRam;
 	ArrayList<String> misconexiones;
-	public TarjetaMadre(float precio, int cantidadDisponible, int numeroserie, int cantidadminima, Proveedor proveedor,
+	public TarjetaMadre(String nombre,float precio, int cantidadDisponible, int numeroserie, int cantidadminima, Proveedor proveedor,
 			String marca, String modelo, String tipoconector, String tipomemoriaRam, ArrayList<String> misconexiones) {
-		super(precio, cantidadDisponible, numeroserie, cantidadminima, proveedor);
+		super(nombre, precio, cantidadDisponible, numeroserie, cantidadminima, proveedor);
 		this.marca = marca;
 		this.modelo = modelo;
 		this.tipoconector = tipoconector;
