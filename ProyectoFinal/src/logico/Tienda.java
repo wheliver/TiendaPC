@@ -169,12 +169,16 @@ public Componente buscarcomponente(String codigo) {
 	int indexBuscador=0;
 	
 	while (!encontrado && indexBuscador<miscomponentes.size()) {
-		if(miscomponentes.get(indexBuscador).nombre.equalsIgnoreCase(codigo)) {
+		if(miscomponentes.get(indexBuscador).getNombre().equalsIgnoreCase(codigo)) {
 			aux = miscomponentes.get(indexBuscador);
 			encontrado = true;				
 		}
 		indexBuscador++;
 	}
 	return aux;		
+}
+public Combos buscarcombo(String string) {
+	// TODO Auto-generated method stub
+	return null;
 }
 };

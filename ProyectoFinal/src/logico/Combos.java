@@ -37,4 +37,13 @@ public void setDescuento(float descuento) {
 public void setMiscomponentes(ArrayList<Componente> miscomponentes) {
 	this.miscomponentes = miscomponentes;
 }
+public float  getPrecio() {
+	float aux = 0;
+	
+	for (Componente com : miscomponentes) {
+		aux= com.getPrecio()+ aux;
+	}
+	aux=(aux-(aux*descuento));
+	return aux;
+}
 }
