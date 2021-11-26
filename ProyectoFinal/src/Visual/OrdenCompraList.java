@@ -61,14 +61,14 @@ public class OrdenCompraList extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		model = new DefaultTableModel();
-		String [] headers = {"Codigo","Fecha","Tipo pago","Cuenta por pagar","Estado"};
+		String [] headers = {"Codigo","Fecha","Tipo pago","Cantidad disponible","Estado"};
 		model.setColumnIdentifiers(headers);
 		
 		 for (OrdenCompra pu : Tienda.getInstance().getMis_orden()){
 			 row[0]=pu.getCodigo();
 			    row[1]=pu.getFecha();
 			    row[2] =pu.getTipodepago();
-			    row[3] = pu.getProveedor().getCuentaxpagar();
+			    row[3] = pu.getCompo().getCantidadDisponible();
 				row[4] =pu.getEstado();
 				model.addRow(row);
 			 
