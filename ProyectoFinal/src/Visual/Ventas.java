@@ -251,7 +251,17 @@ public class Ventas extends JDialog {
 		quitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			
+				 for (auxiliarCarrito a : carrito1) {
+					 if(selected==a.getCarrito()) {
+						carrito1.remove(a);
+						}
+					 }
+				 for (auxiliarCarito2 b : carrito2) {
+					 if(selected1==b.getCarrito()) {
+						carrito2.remove(b);
+						}
+					 }
+				 loadTable();
 			}
 		});
 		quitar.setEnabled(false);
@@ -416,6 +426,14 @@ public class Ventas extends JDialog {
 			buttonPane.add(GuardarCombobutton);
 			{
 				RegistrarButton = new JButton("Comprar");
+				RegistrarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RegistroCliente res = new RegistroCliente();
+						res.setCarrito1(carrito1);
+						res.setCarrito2(carrito2);
+						res.setVisible(true);
+					}
+				});
 				RegistrarButton.setActionCommand("OK");
 				buttonPane.add(RegistrarButton);
 				getRootPane().setDefaultButton(RegistrarButton);

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class RegistroCliente extends JDialog {
@@ -31,6 +32,8 @@ public class RegistroCliente extends JDialog {
 	private Cliente cli = null;
 	private JTextField textField;
 	private JButton SalirButton;
+	private ArrayList<auxiliarCarrito> carrito1;
+	private ArrayList<auxiliarCarito2> carrito2;
 
 	/**
 	 * Launch the application.
@@ -135,20 +138,23 @@ public class RegistroCliente extends JDialog {
 					textField_Telefono.setEnabled(true);
 					textField_Cedula.setEnabled(true);
 		    		 JOptionPane.showMessageDialog(null, "ES UN CLIENTE NUEVO POR FAVOR LLENE LOS CAMPOS Y PROCEDA A COMPRAR");
-		    	}
-				if(cli != null){
+		    		 RegistrarButton.setText("Registrar");
+		    	}else{
 		    		textField_Nombre.setText(cli.getNombre());
 		    		textField_direccion.setText(cli.getDireccion());
 		    		textField_RNC.setText(cli.getRnc());
 		    		textField_Telefono.setText(cli.getTelefono());
 		    		textField_Cedula.setText(cli.getCedula());
-		    		 JOptionPane.showMessageDialog(null,"GRACIAS POR VOLVER A COMPRAR");
+		    		
 		    		
 		    		 textField_Nombre.setEnabled(false);
 						textField_direccion.setEnabled(false);
 						textField_RNC.setEnabled(false);
 						textField_Telefono.setEnabled(false);
 						textField_Cedula.setEnabled(false);
+						 JOptionPane.showMessageDialog(null,"GRACIAS POR VOLVER A COMPRAR");
+						 RegistrarButton.setText("Comprar");
+						 
 			}
 			}
 		});
@@ -160,27 +166,29 @@ public class RegistroCliente extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				RegistrarButton = new JButton("Registrar");
+				RegistrarButton = new JButton("");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
+						
+						
 						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getSelectedText(),textField_Cedula.getText());
 						Tienda.getInstance().insertarCliente(a);
 						 JOptionPane.showMessageDialog(null,"Registro Satisfactorio","Informacion",JOptionPane.INFORMATION_MESSAGE);
-		                 clean();
+		                 //clean();
+						 
 		                 textField_Nombre.setEnabled(false);
 							textField_direccion.setEnabled(false);
 							textField_RNC.setEnabled(false);
 							textField_Telefono.setEnabled(false);
 							textField_Cedula.setEnabled(false);
-					}
-
-					private void clean() {
-						textField_Nombre.setText("");
-			    		textField_direccion.setText("");
-			    		textField_RNC.setText("");
-			    		textField_Telefono.setText("");
-			    		textField_Cedula.setText("");
-						
+							}
+					
+						if(RegistrarButton.getText().equalsIgnoreCase("Comprar")) {
+							// terminar el proceso de comprar 
+							
+							dispose();
+						}
 					}
 				});
 				RegistrarButton.setActionCommand("OK");
@@ -197,5 +205,21 @@ public class RegistroCliente extends JDialog {
 				buttonPane.add(SalirButton);
 			}
 		}
+	}
+	private void clean() {
+		textField_Nombre.setText("");
+		textField_direccion.setText("");
+		textField_RNC.setText("");
+		textField_Telefono.setText("");
+		textField_Cedula.setText("");
+		
+	}
+
+	public void setCarrito1(ArrayList<auxiliarCarrito> carrito1) {
+		this.carrito1 = carrito1;
+	}
+
+	public void setCarrito2(ArrayList<auxiliarCarito2> carrito2) {
+		this.carrito2 = carrito2;
 	}
 }
