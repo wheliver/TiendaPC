@@ -85,8 +85,8 @@ public int getGeneradorcodigoCompo() {
 public void setGeneradorcodigoCompo(int generadorcodigoCompo) {
 	this.generadorcodigoCompo = generadorcodigoCompo;
 }
-public void crearCliente(String nombre, String direccion ,String telefono ,String rnc ,String cedula,float limiteCredito,float cuentasxCobrar ) {
-	Cliente primer = new Cliente( nombre,direccion,telefono,rnc,cedula, limiteCredito,cuentasxCobrar);
+public void crearCliente(String nombre, String direccion ,String telefono ,String rnc ,String cedula) {
+	Cliente primer = new Cliente( nombre,direccion,telefono,rnc,cedula);
 	misclientes.add(primer);
 	cantClientesReal= cantClientesReal+1;
 }
