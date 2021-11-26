@@ -186,7 +186,32 @@ public class RegistroCliente extends JDialog {
 					
 						if(RegistrarButton.getText().equalsIgnoreCase("Comprar")) {
 							// terminar el proceso de comprar 
-							
+							int s=	JOptionPane.showOptionDialog(
+									RegistrarButton,
+										   "Seleccione un Metodo de Pago", 
+										   "Metodos de Pago",
+										   JOptionPane.YES_NO_CANCEL_OPTION,
+										   JOptionPane.QUESTION_MESSAGE,
+										   null,    // null para icono por defecto.
+										   new Object[] { "A Credito", "Al Contado", "Cancela" },   // null para YES, NO y CANCEL
+										   "opcion 1");
+							if(s==-1 || s>1) {
+								//credito
+								 JOptionPane.showMessageDialog(null,"POR FAVRO SELECIONAR UN METODO DE PAGO");
+								 
+							}
+							if(s==1) {
+								//contado
+								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR AL CONTADO");
+								 dispose();
+							}
+							if(s==0) {
+								//credito
+								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR A PLAZO");
+								 dispose();
+							}
+
+						//	JOptionPane.showOptionDialog(RegistrarButton,"Selecciones un Metodo de Pago","Metodos De Pago",JOptionPane.YES_NO_CANCEL_OPTION,null,JOptionPane.QUESTION_MESSAGE,new Object[] { "Credito", "Contado", "Cancel"});
 							dispose();
 						}
 					}
@@ -199,6 +224,9 @@ public class RegistroCliente extends JDialog {
 				SalirButton = new JButton("Salir");
 				SalirButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						
+						
 					}
 				});
 				SalirButton.setActionCommand("Cancel");
