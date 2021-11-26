@@ -46,7 +46,7 @@ public class Factura {
 	public String getTipodepago() {
 		return tipodepago;
 	}
-	public boolean isPagado() {
+	public boolean Pagado() {
 		return pagado;
 	}
 	public void setCodigo(String codigo) {

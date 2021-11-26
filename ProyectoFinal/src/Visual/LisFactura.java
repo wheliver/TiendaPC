@@ -34,6 +34,7 @@ public class LisFactura extends JDialog {
 	private JTextField textFieldCedula;
 	private JButton btnBuscar;
     private Factura selected = null; 
+    private JButton btnCambiarEstado;
 
 	/**
 	 * Launch the application.
@@ -58,36 +59,9 @@ public class LisFactura extends JDialog {
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 65, 719, 424);
-		contentPanel.add(panel);
-		panel.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(248, 11, 720, 478);
-		panel.add(scrollPane);
-		
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int aux = table.getSelectedRow();
-				if(aux!=-1){
-					btnSalir.setEnabled(true);
-					btnver.setEnabled(true);
-					String code = (String) table.getValueAt(aux, 0);
-			}
-			}
-			});
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(table);
 		model = new DefaultTableModel();
 		String [] headers = {"Codigo","Precio Total", "Cliente","Vendedor","Pagado"};
 		model.setColumnIdentifiers(headers);
-		table.setModel(model);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -116,6 +90,23 @@ public class LisFactura extends JDialog {
 		btnver.setEnabled(false);
 		btnver.setBounds(521, 11, 89, 23);
 		panel_1.add(btnver);
+		
+		btnCambiarEstado = new JButton("");
+		btnCambiarEstado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(selected.Pagado() == false)
+				{
+					selected.setPagado(true);
+					btnCambiarEstado.setVisible(false);
+					JOptionPane.showMessageDialog(null,"La factura del cliente fue pagada");
+				}
+				
+			}
+
+		});
+		btnCambiarEstado.setEnabled(false);
+		btnCambiarEstado.setBounds(362, 11, 149, 23);
+		panel_1.add(btnCambiarEstado);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Introduzca la cedula del cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -148,7 +139,7 @@ public class LisFactura extends JDialog {
 		    row[1]=pu.getpreciototal();
 			row[2] =pu.getCliente().getNombre();
 			row[3] =pu.getVendedor().getNombre();
-			row[4] =pu.isPagado();
+			row[4] =pu.Pagado();
 			model.addRow(row);
 			}
 			 
@@ -163,7 +154,40 @@ public class LisFactura extends JDialog {
 		textFieldCedula.setBounds(198, 12, 251, 20);
 		panel_2.add(textFieldCedula);
 		textFieldCedula.setColumns(10);
-		{
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 65, 719, 424);
+		contentPanel.add(scrollPane);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int aux = table.getSelectedRow();
+				if(aux!=-1){
+					btnSalir.setEnabled(true);
+					btnver.setEnabled(true);
+					btnCambiarEstado.setEnabled(true);
+
+					if(selected.Pagado() == false)
+					{
+						btnCambiarEstado.setText("Pagar");
+						btnCambiarEstado.setVisible(true);
+					}
+					else {
+						btnCambiarEstado.setEnabled(false);
+						btnCambiarEstado.setVisible(false);
+					}
+					
+					String code = (String) table.getValueAt(aux, 0);
+			}
+			}
+			});
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(table);
+		table.setModel(model);
+	
 	}
-	}	
+
 }
