@@ -6,13 +6,12 @@ private String rnc;
 private String telefono;
 private String direccion;
 private float cuentaxpagar;
-public Proveedor(String nombre, String rnc, String telefono, String direccion, float cuentaxpagar) {
+public Proveedor(String nombre, String rnc, String telefono, String direccion) {
 	super();
 	this.nombre = nombre;
 	this.rnc = rnc;
 	this.telefono = telefono;
 	this.direccion = direccion;
-	this.cuentaxpagar = cuentaxpagar;
 }
 public String getNombre() {
 	return nombre;

@@ -8,16 +8,13 @@ private String rnc;
 private String cedula;
 private float LimiteCredito;
 private float CuentasxCobrar;
-public Cliente(String nombre, String direccion, String telefono, String rnc, String cedula, float limiteCredito,
-		float cuentasxCobrar) {
+public Cliente(String nombre, String direccion, String telefono, String rnc, String cedula) {
 	super();
 	this.nombre = nombre;
 	this.direccion = direccion;
 	this.telefono = telefono;
 	this.rnc = rnc;
 	this.cedula = cedula;
-	LimiteCredito = limiteCredito;
-	CuentasxCobrar = cuentasxCobrar;
 }
 public String getNombre() {
 	return nombre;

@@ -10,6 +10,7 @@ ArrayList<Factura>misfacturas;
 ArrayList<Cliente>misclientes;
 ArrayList<OrdenCompra>mis_orden;
 ArrayList<Componente>miscomponentes;
+ArrayList<Proveedor>misproveedores;
 public static Tienda instanciaGlobal = null;
 private int generadorcodigoCompo;
 
@@ -21,6 +22,7 @@ public Tienda() {
 	this.mis_orden = new ArrayList<OrdenCompra>();
 	this.miscomponentes = new ArrayList<Componente>();
 	this.cantClientesReal=0;
+	this.misproveedores = new ArrayList<Proveedor>();
 }
 //patron singelton
 	public static Tienda getInstance() {
@@ -34,6 +36,12 @@ public ArrayList<OrdenCompra> getMis_orden() {
 	}
 	public ArrayList<Componente> getMiscomponentes() {
 		return miscomponentes;
+	}
+	public ArrayList<Proveedor> getMisproveedores() {
+		return misproveedores;
+	}
+	public void setMisproveedores(ArrayList<Proveedor> misproveedores) {
+		this.misproveedores = misproveedores;
 	}
 	public void setMis_orden(ArrayList<OrdenCompra> mis_orden) {
 		this.mis_orden = mis_orden;
@@ -77,8 +85,8 @@ public int getGeneradorcodigoCompo() {
 public void setGeneradorcodigoCompo(int generadorcodigoCompo) {
 	this.generadorcodigoCompo = generadorcodigoCompo;
 }
-public void crearCliente(String nombre, String direccion ,String telefono ,String rnc ,String cedula ,float limiteCredito ,float cuentasxCobrar) {
-	Cliente primer = new Cliente( nombre,direccion,telefono,rnc,cedula,limiteCredito , cuentasxCobrar);
+public void crearCliente(String nombre, String direccion ,String telefono ,String rnc ,String cedula ) {
+	Cliente primer = new Cliente( nombre,direccion,telefono,rnc,cedula);
 	misclientes.add(primer);
 	cantClientesReal= cantClientesReal+1;
 }
@@ -176,5 +184,26 @@ public Componente buscarcomponente(String codigo) {
 		indexBuscador++;
 	}
 	return aux;		
+}
+public void insertarCliente(Cliente a) {
+	misclientes.add(a);
+}
+public Proveedor buscarProveedor(String rnc) {
+	Proveedor aux = null;
+	boolean encontrado = false;
+	int indexBuscador=0;
+	
+	while (!encontrado && indexBuscador<misfacturas.size()) {
+		if(misfacturas.get(indexBuscador).getCodigo().equalsIgnoreCase(rnc)) {
+			aux = misproveedores.get(indexBuscador);
+			encontrado = true;				
+		}
+		indexBuscador++;
+	}
+	return aux;		
+}
+public void insertarProveedor(Proveedor a) {
+	misproveedores.add(a);
+	
 }
 };
