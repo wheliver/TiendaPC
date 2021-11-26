@@ -29,6 +29,18 @@ public Tienda() {
 		}
 		return instanciaGlobal;
 	}
+public ArrayList<OrdenCompra> getMis_orden() {
+		return mis_orden;
+	}
+	public ArrayList<Componente> getMiscomponentes() {
+		return miscomponentes;
+	}
+	public void setMis_orden(ArrayList<OrdenCompra> mis_orden) {
+		this.mis_orden = mis_orden;
+	}
+	public void setMiscomponentes(ArrayList<Componente> miscomponentes) {
+		this.miscomponentes = miscomponentes;
+	}
 public ArrayList<Combos> getMiscombos() {
 	return miscombos;
 }
