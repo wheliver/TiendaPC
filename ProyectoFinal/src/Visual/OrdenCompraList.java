@@ -96,8 +96,7 @@ public class OrdenCompraList extends JDialog {
 						{
 							selected.setEstado("Entregado");
 							btnEstado.setEnabled(false);
-							int b =selected.getCantidad()+ selected1.getCantidadDisponible();
-							selected2.setCuentaxpagar(b);
+							selected1.setCantidadDisponible(selected.getCantidad()+ selected1.getCantidadDisponible());
 						}
 						if(selected.getEstado().equalsIgnoreCase("Entregado"))
 						{
