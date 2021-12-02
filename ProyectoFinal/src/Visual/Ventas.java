@@ -18,7 +18,11 @@ import javax.swing.table.DefaultTableModel;
 import logico.Cliente;
 import logico.Combos;
 import logico.Componente;
+import logico.Discoduro;
 import logico.Factura;
+import logico.MemoriaRam;
+import logico.Microprocesador;
+import logico.TarjetaMadre;
 import logico.Tienda;
 
 import javax.swing.JComboBox;
@@ -449,7 +453,7 @@ public class Ventas extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadTable();
+		loadComponente();
 	}
 
 	protected void limpiar() {
@@ -483,4 +487,27 @@ public class Ventas extends JDialog {
 				model.addRow(row);
 				}
 				}
+	public void loadComponente() {
+		 ArrayList<Componente> compo = Tienda.getInstance().getMiscomponentes();
+		 ArrayList<Combos> combo = Tienda.getInstance().getMiscombos();
+		 for (Componente compi : compo) {
+		if(compi instanceof TarjetaMadre) {
+		combotargeta.setSelectedItem(compi.getNombre());	
+		}
+		if(compi instanceof MemoriaRam) {
+			combotargeta.setSelectedItem(compi.getNombre());	
+			}
+		
+		 if(compi instanceof Microprocesador) {
+				combotargeta.setSelectedItem(compi.getNombre());	
+				}
+		 if(compi instanceof Discoduro) {
+				combotargeta.setSelectedItem(compi.getNombre());	
+				}
+		 }
+		 for (Combos combi : combo) {		
+				combotargeta.setSelectedItem(combi.getNombre());	
+				
+				}
+	}
 }

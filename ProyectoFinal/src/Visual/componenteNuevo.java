@@ -9,7 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import logico.Combos;
 import logico.Componente;
+import logico.Discoduro;
+import logico.MemoriaRam;
+import logico.Microprocesador;
 import logico.Proveedor;
 import logico.TarjetaMadre;
 import logico.Tienda;
@@ -23,6 +27,7 @@ import javax.swing.JSpinner;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
@@ -62,6 +67,8 @@ public class componenteNuevo extends JDialog {
 	private JComboBox cbxVelocidad;
 	private JPanel panelProcesador;
 	private JRadioButton rProcesador;
+	private JComboBox provedorr;
+	private JButton bprovedor;
 
 	/**
 	 * Launch the application.
@@ -86,7 +93,7 @@ public class componenteNuevo extends JDialog {
 		
 		setResizable(false);
 		setTitle(".:. INTRODUCION DE NUEVO COMPONENTE .:.");
-		setBounds(100, 100, 530, 433);
+		setBounds(100, 100, 530, 469);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Introduccion de Componente", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -394,6 +401,39 @@ public class componenteNuevo extends JDialog {
 		cbxVelocidad.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "2,4GHz", "3,0GHz", "3,30GHz"}));
 		cbxVelocidad.setBounds(206, 88, 136, 20);
 		panelProcesador.add(cbxVelocidad);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(6, 355, 508, 41);
+		contentPanel.add(panel_1);
+		
+		provedorr = new JComboBox();
+		provedorr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(provedorr.getSelectedItem().toString() !="Nuevo") {
+					bprovedor.setEnabled(true);
+							
+				}else {
+					bprovedor.setEnabled(false);
+				}
+			}
+		});
+		provedorr.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Nuevo"}));
+		provedorr.setBounds(10, 11, 136, 20);
+		panel_1.add(provedorr);
+		
+		
+		bprovedor = new JButton("Nuevo");
+		bprovedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistroProvedor pt = new RegistroProvedor();
+				pt.setVisible(true);
+				}
+		});
+		bprovedor.setBounds(156, 10, 79, 23);
+		panel_1.add(bprovedor);
+		bprovedor.setVisible(false);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -449,6 +489,7 @@ public class componenteNuevo extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadComponente();
 	}
 	public void limpiarVentana() {
 	
@@ -472,4 +513,11 @@ public class componenteNuevo extends JDialog {
 		}
 		return aux;
 	}
+	public void loadComponente() {
+		 ArrayList<Proveedor> compo = Tienda.getInstance().getMisproveedores(); 
+		 for (Proveedor provedor : compo) {
+			 provedorr.setSelectedItem(provedor.getNombre());
+		} 	
+		 }
+		
 }

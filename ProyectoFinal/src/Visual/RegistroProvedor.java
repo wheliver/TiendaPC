@@ -107,6 +107,10 @@ public class RegistroProvedor extends JDialog {
 			JLabel lblNewLabel_1 = new JLabel("Componente");
 			lblNewLabel_1.setBounds(86, 163, 85, 14);
 			panel.add(lblNewLabel_1);
+			
+			JLabel componentel = new JLabel("");
+			componentel.setBounds(10, 180, 46, 14);
+			panel.add(componentel);
 		}
 		
 		JPanel panel = new JPanel();
@@ -145,7 +149,7 @@ public class RegistroProvedor extends JDialog {
 			}
 			}
 		});
-		btnBuscarProveedor.setBounds(220, 42, 130, 23);
+		btnBuscarProveedor.setBounds(207, 42, 150, 23);
 		panel.add(btnBuscarProveedor);
 		{
 			JPanel buttonPane = new JPanel();
