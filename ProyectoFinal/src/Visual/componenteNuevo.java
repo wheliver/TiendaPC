@@ -517,7 +517,8 @@ public class componenteNuevo extends JDialog {
 		 ArrayList<Proveedor> compo = Tienda.getInstance().getMisproveedores(); 
 		 for (Proveedor provedor : compo) {
 			 provedorr.setSelectedItem(provedor.getNombre());
-		} 	
+		} 
+		 int klkrueba = 1;
 		 }
 		
 }
