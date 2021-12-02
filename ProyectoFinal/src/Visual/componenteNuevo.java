@@ -518,7 +518,6 @@ public class componenteNuevo extends JDialog {
 		 for (Proveedor provedor : compo) {
 			 provedorr.setSelectedItem(provedor.getNombre());
 		} 
-		 int klkrueba = 1;
 		 }
 		
 }
