@@ -196,4 +196,8 @@ public Proveedor buscarProveedor(String rnc) {
 public void insertarProveedor(Proveedor a) {
 	misproveedores.add(a);
 }
+public String tipoComponente(Componente componente) {
+	// TODO Auto-generated method stub
+	return null;
+}
 };
