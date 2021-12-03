@@ -44,9 +44,9 @@ import java.awt.event.MouseEvent;
 public class componenteNuevo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField TextFieldMarca;
-	private JTextField textFieldMarca;
-	private JTextField textFieldModelo;
+	private JTextField TextFieldMarcar;
+	private JTextField textFieldMarcad;
+	private JTextField textFieldModelod;
 	private JTextField textfieldMarcam;
 	private JTextField textfieldTipoconector;
 	private JTextField textfieldModelom;
@@ -62,12 +62,12 @@ public class componenteNuevo extends JDialog {
 	private JSpinner spncantidad;
 	private JSpinner spnMinima;
 	private JTextField textFieldNombreComponente;
-	private JTextField textFieldTipoConexion;
+	private JTextField textFieldTipoConexionD;
 	private JComboBox cbxCapacidadAlmacenamiento;
 	private JTextField textFieldTipoMemoria;
 	private JComboBox comboBoxCantidadMemoria;
-	private JTextField textFieldMarca1;
-	private JTextField textFieldModelo2;
+	private JTextField textFieldMarcap;
+	private JTextField textFieldModelopro;
 	private JTextField textFieldTipoconetorp;
 	private JComboBox cbxVelocidad;
 	private JPanel panelProcesador;
@@ -75,6 +75,7 @@ public class componenteNuevo extends JDialog {
 	private JComboBox provedorr;
 	private JButton bprovedor;
 	private JComboBox cbxTipoRam;
+	private JLabel LabelValidar;
 
 	/**
 	 * Launch the application.
@@ -99,7 +100,7 @@ public class componenteNuevo extends JDialog {
 		
 		setResizable(false);
 		setTitle(".:. INTRODUCION DE NUEVO COMPONENTE .:.");
-		setBounds(100, 100, 530, 469);
+		setBounds(100, 100, 531, 491);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Introduccion de Componente", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -153,7 +154,14 @@ public class componenteNuevo extends JDialog {
 			cbxTipoRam.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "DR1", "DR2", "DR3", "DR4", "DR5"}));
 			cbxTipoRam.setBounds(206, 88, 136, 20);
 			panelMadre.add(cbxTipoRam);
+			
+			LabelValidar = new JLabel("Debe seleccionar uno*");
+			LabelValidar.setForeground(Color.RED);
+			LabelValidar.setFont(new Font("Tahoma", Font.BOLD, 13));
+			LabelValidar.setBounds(352, 91, 146, 14);
+			panelMadre.add(LabelValidar);
 		}
+		LabelValidar.setVisible(false);
 		{
 			panel = new JPanel();
 			panel.setBounds(6, 23, 508, 143);
@@ -217,10 +225,10 @@ public class componenteNuevo extends JDialog {
 				panelDisco.add(lblMarca);
 			}
 			{
-				textFieldMarca = new JTextField();
-				textFieldMarca.setColumns(10);
-				textFieldMarca.setBounds(10, 36, 136, 20);
-				panelDisco.add(textFieldMarca);
+				textFieldMarcad = new JTextField();
+				textFieldMarcad.setColumns(10);
+				textFieldMarcad.setBounds(10, 36, 136, 20);
+				panelDisco.add(textFieldMarcad);
 			}
 			{
 				JLabel lblModelo = new JLabel("Modelo");
@@ -228,20 +236,20 @@ public class componenteNuevo extends JDialog {
 				panelDisco.add(lblModelo);
 			}
 			{
-				textFieldModelo = new JTextField();
-				textFieldModelo.setColumns(10);
-				textFieldModelo.setBounds(206, 36, 136, 20);
-				panelDisco.add(textFieldModelo);
+				textFieldModelod = new JTextField();
+				textFieldModelod.setColumns(10);
+				textFieldModelod.setBounds(206, 36, 136, 20);
+				panelDisco.add(textFieldModelod);
 			}
 			
 			JLabel lblCapacidadAlmacenamiento = new JLabel("Tipo Conexion");
 			lblCapacidadAlmacenamiento.setBounds(10, 71, 106, 14);
 			panelDisco.add(lblCapacidadAlmacenamiento);
 			
-			textFieldTipoConexion = new JTextField();
-			textFieldTipoConexion.setBounds(10, 88, 136, 20);
-			panelDisco.add(textFieldTipoConexion);
-			textFieldTipoConexion.setColumns(10);
+			textFieldTipoConexionD = new JTextField();
+			textFieldTipoConexionD.setBounds(10, 88, 136, 20);
+			panelDisco.add(textFieldTipoConexionD);
+			textFieldTipoConexionD.setColumns(10);
 			
 			cbxCapacidadAlmacenamiento = new JComboBox();
 			cbxCapacidadAlmacenamiento.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "2TB", "4TB", "6TB", "8TB", "10TB"}));
@@ -359,10 +367,10 @@ public class componenteNuevo extends JDialog {
 			panelRam.add(textFieldTipoMemoria);
 			textFieldTipoMemoria.setColumns(10);
 			{
-				TextFieldMarca = new JTextField();
-				TextFieldMarca.setBounds(10, 36, 136, 20);
-				panelRam.add(TextFieldMarca);
-				TextFieldMarca.setColumns(10);
+				TextFieldMarcar = new JTextField();
+				TextFieldMarcar.setBounds(10, 36, 136, 20);
+				panelRam.add(TextFieldMarcar);
+				TextFieldMarcar.setColumns(10);
 			}
 		}
 		
@@ -376,19 +384,19 @@ public class componenteNuevo extends JDialog {
 		lblNewLabel_4.setBounds(10, 11, 110, 14);
 		panelProcesador.add(lblNewLabel_4);
 		
-		textFieldMarca1 = new JTextField();
-		textFieldMarca1.setBounds(10, 36, 136, 20);
-		panelProcesador.add(textFieldMarca1);
-		textFieldMarca1.setColumns(10);
+		textFieldMarcap = new JTextField();
+		textFieldMarcap.setBounds(10, 36, 136, 20);
+		panelProcesador.add(textFieldMarcap);
+		textFieldMarcap.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Modelo");
 		lblNewLabel_5.setBounds(206, 11, 102, 14);
 		panelProcesador.add(lblNewLabel_5);
 		
-		textFieldModelo2 = new JTextField();
-		textFieldModelo2.setBounds(206, 36, 136, 20);
-		panelProcesador.add(textFieldModelo2);
-		textFieldModelo2.setColumns(10);
+		textFieldModelopro = new JTextField();
+		textFieldModelopro.setBounds(206, 36, 136, 20);
+		panelProcesador.add(textFieldModelopro);
+		textFieldModelopro.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Tipo de conector");
 		lblNewLabel_6.setBounds(10, 71, 106, 14);
@@ -453,7 +461,8 @@ public class componenteNuevo extends JDialog {
 		bprovedor.setVisible(false);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			FlowLayout fl_buttonPane = new FlowLayout(FlowLayout.RIGHT);
+			buttonPane.setLayout(fl_buttonPane);
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Facbricar");
@@ -466,21 +475,21 @@ public class componenteNuevo extends JDialog {
 						int cantidad = Integer.valueOf(spncantidad.getValue().toString());
 						float precio = Float.valueOf(spnprecio.getValue().toString());
 						int cantidadmininima = Integer.valueOf(spnMinima.getValue().toString());
-						
+					//	if()
 						
 						if(rTarjetaMadre.isSelected()) {
 							compo = new TarjetaMadre(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textfieldMarcam.getText(), textfieldModelom.getText(),textfieldTipoconector.getText(),cbxTipoRam.getSelectedItem().toString(), null);
 						}
 						
 						if(rRam.isSelected()) {
-							compo = new MemoriaRam(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),TextFieldMarca.getText(),Integer.valueOf(comboBoxCantidadMemoria.getSelectedItem().toString()),textFieldTipoMemoria.getText());
+							compo = new MemoriaRam(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),TextFieldMarcar.getText(),Integer.valueOf(comboBoxCantidadMemoria.getSelectedItem().toString()),textFieldTipoMemoria.getText());
 						}
 						
 						if(rDisco.isSelected()) {
-							compo = new Discoduro(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarca.getText(), textFieldModelo.getText(),Integer.valueOf(cbxCapacidadAlmacenamiento.getSelectedItem().toString()),textFieldTipoConexion.getText());
+							compo = new Discoduro(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarcad.getText(), textFieldModelod.getText(),Integer.valueOf(cbxCapacidadAlmacenamiento.getSelectedItem().toString()),textFieldTipoConexionD.getText());
 						}
 						if(rProcesador.isSelected()) {
-							compo = new Microprocesador(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarca1.getText(), textFieldModelo2.getText(),textFieldTipoconetorp.getText(),Integer.valueOf(cbxVelocidad.getSelectedItem().toString()));
+							compo = new Microprocesador(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarcap.getText(), textFieldModelopro.getText(),textFieldTipoconetorp.getText(),Integer.valueOf(cbxVelocidad.getSelectedItem().toString()));
 						}
 										
 						Tienda.getInstance().introducirComponente(compo);
@@ -488,6 +497,7 @@ public class componenteNuevo extends JDialog {
 						limpiarVentana();
 						}else{
 							JOptionPane.showMessageDialog(null, "Completar campos para poder fabricar  los componentes ");
+							
 						}
 					
 						
@@ -513,22 +523,62 @@ public class componenteNuevo extends JDialog {
 	}
 	public void limpiarVentana() {
 	
-		textFieldMarca.setText("");
+		textFieldMarcad.setText("");
 		textfieldModelom.setText("");
-		textFieldModelo.setText("");
-		TextFieldMarca.setText("");
+		textFieldModelod.setText("");
+		TextFieldMarcar.setText("");
 		textfieldMarcam.setText("");
 		textfieldTipoconector.setText("");
-		
+		comboBoxCantidadMemoria.setSelectedIndex(0);
+		cbxCapacidadAlmacenamiento.setSelectedIndex(0);
+		cbxVelocidad.setSelectedIndex(0);
+		provedorr.setSelectedIndex(0);
 		spnprecio.setValue(0);
-		spncantidad.setValue(0);
+		spnMinima.setValue(0);
+		spncantidad.setValue(1);
+		cbxTipoRam.setSelectedIndex(0);
+		textFieldMarcap.setText("");
+		textFieldModelopro.setText("");
+		textFieldNombreComponente.setText("");
+		textFieldTipoMemoria.setText("");
 	}
 	public boolean validarCampos() {
 		boolean aux = false;
+		String nombre = textFieldNombreComponente.getText();
 		String codigo = String.valueOf(Tienda.getInstance().getGeneradorcodigoCompo());
+		//Tarjeta Madre
+		String marcam = textfieldMarcam.getText();
+		String modelom = textfieldModelom.getText();
+		String conectorm = textfieldTipoconector.getText();
+		 //Memoria Ram
+		String marcar = TextFieldMarcar.getText();
+		String memoriar = textFieldTipoMemoria.getText();
+		//Disco Duro
+		String marcad =textFieldMarcad.getText();
+		String modelod = textFieldModelod.getText();
+		String conectord = textFieldTipoConexionD.getText();
+		//Microprocesador
+		String marcap = textFieldMarcap.getText();
+		String modelop=  textFieldModelopro.getText();
+		String conectorp = textFieldTipoConexionD.getText();
+		
 		float unitario = Float.valueOf(spncantidad.getValue().toString());
 		float Base = Float.valueOf(spnprecio.getValue().toString());
-		if(!(codigo.equalsIgnoreCase("")) && unitario>0 && Base>0){
+		
+		if ((rTarjetaMadre.isSelected() && !marcam.equalsIgnoreCase("")&& !modelom.equalsIgnoreCase("") && !conectorm.equalsIgnoreCase("") && cbxTipoRam.getSelectedIndex() != 0 ) && !(codigo.equalsIgnoreCase("")) &&  unitario>0 && Base>0 && !nombre.equalsIgnoreCase("")) 
+		{
+			aux = true;
+		}
+		if((rRam.isSelected() && !marcar.equalsIgnoreCase("")&& !memoriar.equalsIgnoreCase("") && comboBoxCantidadMemoria.getSelectedIndex() != 0 )) 
+		{
+			aux = true;
+		}
+		if((rDisco.isSelected() && !marcad.equalsIgnoreCase("") && !modelod.equalsIgnoreCase("") && !conectord.equalsIgnoreCase("") && cbxCapacidadAlmacenamiento.getSelectedIndex() != 0))
+				{
+			aux = true;
+				}
+		if((rProcesador.isSelected() && !marcap.equalsIgnoreCase("")&& !modelop.equalsIgnoreCase("") && !conectorp.equalsIgnoreCase("") && cbxVelocidad.getSelectedIndex()!= 0)) 
+		{
 			aux = true;
 		}
 		return aux;
