@@ -42,9 +42,9 @@ public class componenteNuevo extends JDialog {
 	private JTextField TextFieldMarca;
 	private JTextField textFieldMarca;
 	private JTextField textFieldModelo;
-	private JTextField textfieldMarca;
+	private JTextField textfieldMarcam;
 	private JTextField textfieldTipoconector;
-	private JTextField textfieldModelo;
+	private JTextField textfieldModelom;
 	private JRadioButton rDisco;
 	private JRadioButton rTarjetaMadre;
 	private JPanel panelRam;
@@ -63,12 +63,13 @@ public class componenteNuevo extends JDialog {
 	private JComboBox comboBoxCantidadMemoria;
 	private JTextField textFieldMarca1;
 	private JTextField textFieldModelo2;
-	private JTextField textFieldTipoconetor;
+	private JTextField textFieldTipoconetorp;
 	private JComboBox cbxVelocidad;
 	private JPanel panelProcesador;
 	private JRadioButton rProcesador;
 	private JComboBox provedorr;
 	private JButton bprovedor;
+	private JComboBox cbxTipoRam;
 
 	/**
 	 * Launch the application.
@@ -111,10 +112,10 @@ public class componenteNuevo extends JDialog {
 				panelMadre.add(lblMarca);
 			}
 			{
-				textfieldMarca = new JTextField();
-				textfieldMarca.setColumns(10);
-				textfieldMarca.setBounds(10, 36, 136, 20);
-				panelMadre.add(textfieldMarca);
+				textfieldMarcam = new JTextField();
+				textfieldMarcam.setColumns(10);
+				textfieldMarcam.setBounds(10, 36, 136, 20);
+				panelMadre.add(textfieldMarcam);
 			}
 			{
 				JLabel lblTipoDeConector = new JLabel("Tipo de conector");
@@ -128,10 +129,10 @@ public class componenteNuevo extends JDialog {
 				panelMadre.add(textfieldTipoconector);
 			}
 			{
-				textfieldModelo = new JTextField();
-				textfieldModelo.setColumns(10);
-				textfieldModelo.setBounds(206, 36, 136, 20);
-				panelMadre.add(textfieldModelo);
+				textfieldModelom = new JTextField();
+				textfieldModelom.setColumns(10);
+				textfieldModelom.setBounds(206, 36, 136, 20);
+				panelMadre.add(textfieldModelom);
 			}
 			{
 				JLabel lblRadioInterior = new JLabel("Modelo");
@@ -143,7 +144,7 @@ public class componenteNuevo extends JDialog {
 			lblTipoDeRam.setBounds(206, 71, 106, 14);
 			panelMadre.add(lblTipoDeRam);
 			
-			JComboBox cbxTipoRam = new JComboBox();
+			cbxTipoRam = new JComboBox();
 			cbxTipoRam.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "DR1", "DR2", "DR3", "DR4", "DR5"}));
 			cbxTipoRam.setBounds(206, 88, 136, 20);
 			panelMadre.add(cbxTipoRam);
@@ -174,7 +175,7 @@ public class componenteNuevo extends JDialog {
 			}
 			{
 				spncantidad = new JSpinner();
-				spncantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+				spncantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 				spncantidad.setBounds(10, 97, 136, 20);
 				panel.add(spncantidad);
 			}
@@ -388,10 +389,10 @@ public class componenteNuevo extends JDialog {
 		lblNewLabel_6.setBounds(10, 71, 106, 14);
 		panelProcesador.add(lblNewLabel_6);
 		
-		textFieldTipoconetor = new JTextField();
-		textFieldTipoconetor.setBounds(10, 88, 136, 20);
-		panelProcesador.add(textFieldTipoconetor);
-		textFieldTipoconetor.setColumns(10);
+		textFieldTipoconetorp = new JTextField();
+		textFieldTipoconetorp.setBounds(10, 88, 136, 20);
+		panelProcesador.add(textFieldTipoconetorp);
+		textFieldTipoconetorp.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Velocidad");
 		lblNewLabel_7.setBounds(206, 71, 106, 14);
@@ -412,10 +413,12 @@ public class componenteNuevo extends JDialog {
 		provedorr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(provedorr.getSelectedItem().toString() !="Nuevo") {
-					bprovedor.setEnabled(true);
+					bprovedor.setEnabled(false);
+					bprovedor.setVisible(false);
 							
 				}else {
-					bprovedor.setEnabled(false);
+					bprovedor.setEnabled(true);
+					bprovedor.setVisible(true);
 				}
 			}
 		});
@@ -428,6 +431,7 @@ public class componenteNuevo extends JDialog {
 		bprovedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistroProvedor pt = new RegistroProvedor();
+				pt.nombredecomponete(textFieldNombreComponente.getText());
 				pt.setVisible(true);
 				}
 		});
@@ -452,22 +456,25 @@ public class componenteNuevo extends JDialog {
 						
 						
 						if(rTarjetaMadre.isSelected()) {
-							compo = new TarjetaMadre(nombre, precio, cantidadmininima, cantidadmininima, cantidadmininima, null, "", "", "", "", null);
+							compo = new TarjetaMadre(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textfieldMarcam.getText(), textfieldModelom.getText(),textfieldTipoconector.getText(),cbxTipoRam.getSelectedItem().toString(), null);
 						}
 						
-						/**if(rCilindro.isSelected()) {
-							compo =  new Cilindro(Base,unitario,codigo,cant,Float.valueOf(Longitud.getText()),Float.valueOf(RadioCilindro.getText()));
+						if(rRam.isSelected()) {
+							compo = new MemoriaRam(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),TextFieldMarca.getText(),Integer.valueOf(comboBoxCantidadMemoria.getSelectedItem().toString()),textFieldTipoMemoria.getText());
 						}
 						
-						if(rCilindrohueco.isSelected()) {
-							compo = new Cilindrohueco(Base,unitario,codigo,cant,Float.valueOf(Longitud2.getText()),Float.valueOf(RadioCilindrohueco.getText()),Float.valueOf(RadioInterior.getText()));
+						if(rDisco.isSelected()) {
+							compo = new Discoduro(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarca.getText(), textFieldModelo.getText(),Integer.valueOf(cbxCapacidadAlmacenamiento.getSelectedItem().toString()),textFieldTipoConexion.getText());
 						}
-						**///
-						//Tienda.getInstance().intrduc(compo);
+						if(rProcesador.isSelected()) {
+							compo = new Microprocesador(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarca1.getText(), textFieldModelo2.getText(),textFieldTipoconetorp.getText(),Integer.valueOf(cbxVelocidad.getSelectedItem().toString()));
+						}
+										
+						Tienda.getInstance().introducirComponente(compo);
 						JOptionPane.showMessageDialog(null, "Se Introdujo correctamente el Componente ");
 						limpiarVentana();
 						}else{
-							JOptionPane.showMessageDialog(null, "Completar campos para poder fabricar  los Quesos ");
+							JOptionPane.showMessageDialog(null, "Completar campos para poder fabricar  los componentes ");
 						}
 					
 						
@@ -494,10 +501,10 @@ public class componenteNuevo extends JDialog {
 	public void limpiarVentana() {
 	
 		textFieldMarca.setText("");
-		textfieldModelo.setText("");
+		textfieldModelom.setText("");
 		textFieldModelo.setText("");
 		TextFieldMarca.setText("");
-		textfieldMarca.setText("");
+		textfieldMarcam.setText("");
 		textfieldTipoconector.setText("");
 		
 		spnprecio.setValue(0);

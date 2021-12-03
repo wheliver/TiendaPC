@@ -32,6 +32,7 @@ public class RegistroProvedor extends JDialog {
 	private JTextField textField_buscarprovedor;
 	private JButton SalirButton;
 	private JButton btnBuscarProveedor;
+	private JLabel componentel;
 
 
 	/**
@@ -108,7 +109,7 @@ public class RegistroProvedor extends JDialog {
 			lblNewLabel_1.setBounds(86, 163, 85, 14);
 			panel.add(lblNewLabel_1);
 			
-			JLabel componentel = new JLabel("");
+			componentel = new JLabel("");
 			componentel.setBounds(10, 180, 46, 14);
 			panel.add(componentel);
 		}
@@ -185,11 +186,15 @@ public class RegistroProvedor extends JDialog {
 				SalirButton = new JButton("Salir");
 				SalirButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dispose();
 					}
 				});
 				SalirButton.setActionCommand("Cancel");
 				buttonPane.add(SalirButton);
 			}
 		}
+	}
+	public void nombredecomponete(String nombree) {
+		componentel.setText(nombree);
 	}
 }

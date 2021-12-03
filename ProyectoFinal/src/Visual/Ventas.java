@@ -489,24 +489,24 @@ public class Ventas extends JDialog {
 				}
 	public void loadComponente() {
 		 ArrayList<Componente> compo = Tienda.getInstance().getMiscomponentes();
-		 ArrayList<Combos> combo = Tienda.getInstance().getMiscombos();
+		 ArrayList<Combos> combo2 = Tienda.getInstance().getMiscombos();
 		 for (Componente compi : compo) {
 		if(compi instanceof TarjetaMadre) {
 		combotargeta.setSelectedItem(compi.getNombre());	
 		}
 		if(compi instanceof MemoriaRam) {
-			combotargeta.setSelectedItem(compi.getNombre());	
+			comboram.setSelectedItem(compi.getNombre());	
 			}
 		
 		 if(compi instanceof Microprocesador) {
-				combotargeta.setSelectedItem(compi.getNombre());	
+				comboprocesador.setSelectedItem(compi.getNombre());	
 				}
 		 if(compi instanceof Discoduro) {
-				combotargeta.setSelectedItem(compi.getNombre());	
+				combodisco.setSelectedItem(compi.getNombre());	
 				}
 		 }
-		 for (Combos combi : combo) {		
-				combotargeta.setSelectedItem(combi.getNombre());	
+		 for (Combos combi : combo2) {		
+			combo.setSelectedItem(combi.getNombre());	
 				
 				}
 	}

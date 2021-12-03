@@ -104,22 +104,7 @@ public Cliente buscarCliente(String Cedula) {
 	}
 	
 	return aux;
-}/*
-public Cliente buscarComponente(int numeroserie) {
-	Cliente aux = null;
-	boolean encontrado = false;
-	int buscador=0;
-	
-	while(!encontrado && buscador<cantClientesReal ) {
-		if(misclientes.get(buscador).getequalsIgnoreCase(Cedula)) {
-			encontrado=true;
-			aux= misclientes.get(buscador);
-		}
-		buscador++;
-	}
-	
-	return aux;
-}*/
+}
 public void CrearOrdendecompra(String codigo, Date fecha, String estado, int cantidad, Componente compo, float preciounitario,
 		Proveedor proveedor, String tipodepago) {
 	OrdenCompra orde = new OrdenCompra(codigo, fecha, estado, cantidad, compo, preciounitario, proveedor, tipodepago);
@@ -192,14 +177,15 @@ public Combos buscarcombo(String string) {
 }
 public void insertarCliente(Cliente a) {
 	misclientes.add(a);
+	cantClientesReal= cantClientesReal+1;
 }
 public Proveedor buscarProveedor(String rnc) {
 	Proveedor aux = null;
 	boolean encontrado = false;
 	int indexBuscador=0;
 	
-	while (!encontrado && indexBuscador<misfacturas.size()) {
-		if(misfacturas.get(indexBuscador).getCodigo().equalsIgnoreCase(rnc)) {
+	while (!encontrado && indexBuscador<misproveedores.size()) {
+		if(misproveedores.get(indexBuscador).getNombre().equalsIgnoreCase(rnc)) {
 			aux = misproveedores.get(indexBuscador);
 			encontrado = true;				
 		}
