@@ -161,7 +161,7 @@ public class RegistroProvedor extends JDialog {
 				RegistrarButton = new JButton("Registrar");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Proveedor a = new Proveedor(textField_Nombre.getText(),textField_RNC.getText(),textField_Telefono.getText(),textField_direccion.getText());
+						Proveedor a = new Proveedor(textField_Nombre.getText()+":"+componentel.getText(),textField_RNC.getText(),textField_Telefono.getText(),textField_direccion.getText());
 						Tienda.getInstance().insertarProveedor(a);
 						 JOptionPane.showMessageDialog(null,"Registro Satisfactorio","Informacion",JOptionPane.INFORMATION_MESSAGE);
 		                 clean();
@@ -169,6 +169,7 @@ public class RegistroProvedor extends JDialog {
 							textField_direccion.setEnabled(false);
 							textField_RNC.setEnabled(false);
 							textField_Telefono.setEnabled(false);
+							dispose();
 					}
 
 					private void clean() {
@@ -187,6 +188,7 @@ public class RegistroProvedor extends JDialog {
 				SalirButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
+						
 					}
 				});
 				SalirButton.setActionCommand("Cancel");

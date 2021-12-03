@@ -31,10 +31,15 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class componenteNuevo extends JDialog {
 
@@ -410,9 +415,16 @@ public class componenteNuevo extends JDialog {
 		contentPanel.add(panel_1);
 		
 		provedorr = new JComboBox();
+		provedorr.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+						loadComponente();
+			}
+		});
 		provedorr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(provedorr.getSelectedItem().toString() !="Nuevo") {
+				loadComponente();
 					bprovedor.setEnabled(false);
 					bprovedor.setVisible(false);
 							
@@ -433,6 +445,7 @@ public class componenteNuevo extends JDialog {
 				RegistroProvedor pt = new RegistroProvedor();
 				pt.nombredecomponete(textFieldNombreComponente.getText());
 				pt.setVisible(true);
+				provedorr.setSelectedIndex(0);
 				}
 		});
 		bprovedor.setBounds(156, 10, 79, 23);
@@ -521,10 +534,16 @@ public class componenteNuevo extends JDialog {
 		return aux;
 	}
 	public void loadComponente() {
-		 ArrayList<Proveedor> compo = Tienda.getInstance().getMisproveedores(); 
-		 for (Proveedor provedor : compo) {
-			 provedorr.setSelectedItem(provedor.getNombre());
-		} 
-		 }
-		
+			 
+		 ArrayList<Proveedor> compo = Tienda.getInstance().getMisproveedores();
+				 for (Proveedor provedor : compo) {
+					 for (int i = 0; i <provedorr.getItemCount(); i++) {
+						
+						 if(provedorr.getItemAt(i).toString().equalsIgnoreCase(provedor.getNombre())) {
+						 }else {
+							 provedorr.addItem(provedor.getNombre()); 
+					 }
+					}
+					 } 
+				 	}
 }

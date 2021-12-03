@@ -492,21 +492,21 @@ public class Ventas extends JDialog {
 		 ArrayList<Combos> combo2 = Tienda.getInstance().getMiscombos();
 		 for (Componente compi : compo) {
 		if(compi instanceof TarjetaMadre) {
-		combotargeta.setSelectedItem(compi.getNombre());	
+		combotargeta.addItem(compi.getNombre());	
 		}
 		if(compi instanceof MemoriaRam) {
-			comboram.setSelectedItem(compi.getNombre());	
+			comboram.addItem(compi.getNombre());	
 			}
 		
 		 if(compi instanceof Microprocesador) {
-				comboprocesador.setSelectedItem(compi.getNombre());	
+				comboprocesador.addItem(compi.getNombre());	
 				}
 		 if(compi instanceof Discoduro) {
-				combodisco.setSelectedItem(compi.getNombre());	
+				combodisco.addItem(compi.getNombre());	
 				}
 		 }
 		 for (Combos combi : combo2) {		
-			combo.setSelectedItem(combi.getNombre());	
+			combo.addItem(combi.getNombre());	
 				
 				}
 	}
