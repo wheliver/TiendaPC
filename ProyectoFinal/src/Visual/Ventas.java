@@ -38,6 +38,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Ventas extends JDialog {
 
@@ -395,6 +397,11 @@ public class Ventas extends JDialog {
 		panel.add(PrecioProcesador);
 		
 		spncombo = new JSpinner();
+		spncombo.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				agregar.setVisible(true);
+			}
+		});
 		spncombo.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		spncombo.setEnabled(false);
 		spncombo.setBounds(216, 75, 29, 20);

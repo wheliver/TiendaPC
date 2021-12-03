@@ -87,6 +87,15 @@ public class Principal extends JFrame {
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_5);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Crear Combo");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CrearCombo cr = new CrearCombo();
+				cr.setVisible(true);
+			}
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_7);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

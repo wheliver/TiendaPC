@@ -20,6 +20,10 @@ import javax.swing.border.TitledBorder;
 
 import logico.Combos;
 import logico.Componente;
+import logico.Discoduro;
+import logico.MemoriaRam;
+import logico.Microprocesador;
+import logico.TarjetaMadre;
 import logico.Tienda;
 import javax.swing.SpinnerNumberModel;
 
@@ -82,7 +86,7 @@ public class CrearCombo extends JDialog {
 		panel.add(lblNewLabel_1);
 		
 		spinnerDescuento = new JSpinner();
-		spinnerDescuento.setModel(new SpinnerNumberModel(0, 0, 50, 5));
+		spinnerDescuento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(50), new Float(1)));
 		spinnerDescuento.setBounds(135, 33, 60, 20);
 		panel.add(spinnerDescuento);
 		
@@ -249,9 +253,26 @@ public class CrearCombo extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadComponente();
 	}
 
-	private void loadcompos() {
-		// TODO Auto-generated method stub
+	public void loadComponente() {
+		 ArrayList<Componente> compo = Tienda.getInstance().getMiscomponentes();
+		 for (Componente compi : compo) {
+		if(compi instanceof TarjetaMadre) {
+		ComboTarjetaMadre.addItem(compi.getNombre());	
+		}
+		if(compi instanceof MemoriaRam) {
+			ComboRam.addItem(compi.getNombre());	
+			}
+		
+		 if(compi instanceof Microprocesador) {
+				ComboMircroprocesador.addItem(compi.getNombre());	
+				}
+		 if(compi instanceof Discoduro) {
+				ComboDisco.addItem(compi.getNombre());	
+				}
+		 }
+		 
 	}
 }
