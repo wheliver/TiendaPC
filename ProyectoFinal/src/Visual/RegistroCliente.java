@@ -227,7 +227,7 @@ public class RegistroCliente extends JDialog {
 								ac.setCantidadDisponible(ac.getCantidadDisponible()-au.getCantidad());
 								if(ac.getCantidadDisponible()<=ac.getCantidadminima()) {
 									Date fechadehoy = new Date();
-									OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "tipo de pago");
+									OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "Decidir");
 								codigodeordendecompra=codigodeordendecompra +1;
 								Tienda.getInstance().insertarOrdendecompra(ad);
 								
@@ -245,7 +245,7 @@ public class RegistroCliente extends JDialog {
 										ac =Tienda.getInstance().buscarcomponente(auh.getNombre());
 									if(ac.getCantidadDisponible()<=ac.getCantidadminima()) {
 										Date fechadehoy = new Date();
-										OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au2.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "tipo de pago");
+										OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au2.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "decidir");
 									codigodeordendecompra=codigodeordendecompra +1;
 									Tienda.getInstance().insertarOrdendecompra(ad);
 									
@@ -256,14 +256,51 @@ public class RegistroCliente extends JDialog {
 							if(s==0) {
 								//credito
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR A PLAZO");
-								 dispose();
+								 Usuario us = new Usuario("wheliver","arenoso","","","whe","123");
+								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,us,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",false);
+							Cliente clie = Tienda.getInstance().buscarCliente(textField_Cedula.getText());
+							clie.setCuentasxCobrar(clie.getCuentasxCobrar()+fa.getpreciototal());
+							if(clie.getCuentasxCobrar()>clie.getLimiteCredito()) {
+								clie.setCuentasxCobrar(clie.getCuentasxCobrar()-fa.getpreciototal());
+								JOptionPane.showMessageDialog(null,"ESTA FACTURA ECEDE SU LIMITE DE CREDITO DISCUPE PERO NO SERA POSIBLE VENDERLA");
+							}else {
+								 Tienda.getInstance().insetarFactura(fa); 
+								 codigodefactura=codigodefactura+1;
+								 for (auxiliarCarrito au : carrito1) {
+								ac =Tienda.getInstance().buscarcomponente(au.getCarrito().getNombre());
+								ac.setCantidadDisponible(ac.getCantidadDisponible()-au.getCantidad());
+								if(ac.getCantidadDisponible()<=ac.getCantidadminima()) {
+									Date fechadehoy = new Date();
+									OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "Decidir");
+								codigodeordendecompra=codigodeordendecompra +1;
+								Tienda.getInstance().insertarOrdendecompra(ad);
+								
+								}
+								}
+								 for (auxiliarCarito2 au2 : carrito2) {
+									for (int i = 0; i < au2.getCantidad(); i++) {
+										
+										 for (Componente au : au2.getCarrito().getMiscomponentes()) {
+												ac =Tienda.getInstance().buscarcomponente(au.getNombre());
+												ac.setCantidadDisponible(ac.getCantidadDisponible()-1);
+												}
+										 		}
+									for (Componente auh : au2.getCarrito().getMiscomponentes()) {
+										ac =Tienda.getInstance().buscarcomponente(auh.getNombre());
+									if(ac.getCantidadDisponible()<=ac.getCantidadminima()) {
+										Date fechadehoy = new Date();
+										OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au2.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "decidir");
+									codigodeordendecompra=codigodeordendecompra +1;
+									Tienda.getInstance().insertarOrdendecompra(ad);
+									
+									}}
+								} 
 							}
-
 						//	JOptionPane.showOptionDialog(RegistrarButton,"Selecciones un Metodo de Pago","Metodos De Pago",JOptionPane.YES_NO_CANCEL_OPTION,null,JOptionPane.QUESTION_MESSAGE,new Object[] { "Credito", "Contado", "Cancel"});
 							dispose();
 						}
-						
-					}
+							
+					}}
 				});
 				RegistrarButton.setActionCommand("OK");
 				buttonPane.add(RegistrarButton);
