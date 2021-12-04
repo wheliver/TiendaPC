@@ -200,4 +200,12 @@ public String tipoComponente(Componente componente) {
 	// TODO Auto-generated method stub
 	return null;
 }
+public void insetarFactura(Factura f) {
+	// TODO Auto-generated method stub
+	misfacturas.add(f);
+}
+public void insertarOrdendecompra(OrdenCompra ad) {
+	// TODO Auto-generated method stub
+	mis_orden.add(ad);
+}
 };

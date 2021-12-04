@@ -48,8 +48,8 @@ public class Ventas extends JDialog {
 	private JTable table;
 	private static DefaultTableModel model;
 	private static Object[] row;
-	private Componente selected = null;
-	private Combos selected1 = null;
+	private static Componente selected = null;
+	private static Combos selected1 = null;
 	private JButton agregar;
 	private JLabel indentificador;
 	private JScrollPane scrollPane;
@@ -69,8 +69,8 @@ public class Ventas extends JDialog {
 	private JComboBox combo;
 	private JSpinner spncombo;
 	private JSpinner spntargeta;
-	private ArrayList<auxiliarCarrito> carrito1;
-	private ArrayList<auxiliarCarito2> carrito2;
+	private ArrayList<auxiliarCarrito> carrito1 = new ArrayList<auxiliarCarrito>();
+	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
 
 	/**
 	 * Launch the application.
@@ -112,16 +112,18 @@ public class Ventas extends JDialog {
 		agregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Componente c =null;
+				int cambio=0;
 				Combos d=null;
-				auxiliarCarito2 e1 = null;
-				auxiliarCarrito b = null;
+				auxiliarCarito2 e1 = new auxiliarCarito2(0, d);
+				auxiliarCarrito b = new auxiliarCarrito(0, c);
 				boolean aux = false;
 				
 				if( Integer.valueOf(spncombo.getValue().toString())>0) {
 				 d = Tienda.getInstance().buscarcombo(combo.getSelectedItem().toString());	
 							 for (auxiliarCarito2 a : carrito2) {
 						 if(d==a.getCarrito()) {
-								a.setCantidad(a.getCantidad()+Integer.valueOf(spncombo.getValue().toString()));
+								
+							 a.setCantidad(a.getCantidad()+Integer.valueOf(spncombo.getValue().toString()));
 								aux=true;
 							}
 					}
@@ -152,13 +154,19 @@ public class Ventas extends JDialog {
 					 c = Tienda.getInstance().buscarcomponente(combotargeta.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
 						 if(c==a.getCarrito()) {
-								a.setCantidad(a.getCantidad()+Integer.valueOf(spntargeta.getValue().toString()));
+							 cambio = a.getCantidad();
+							carrito1.remove(a);
+							 b.setCarrito(c);
+								b.setCantidad(cambio+Integer.valueOf(spntargeta.getValue().toString()));
+								 carrito1.add(b);
+							 //a.setCantidad(+Integer.valueOf(spntargeta.getValue().toString()));
 								aux=true;
 							}
 					}
 					 if(aux==false) {
-						 b.setCarrito(c);
-						 b.setCantidad(Integer.valueOf(spntargeta.getValue().toString()));
+						 
+					 b.setCarrito(c);
+						b.setCantidad(Integer.valueOf(spntargeta.getValue().toString()));
 						 carrito1.add(b);
 					 }
 				}
@@ -195,6 +203,7 @@ public class Ventas extends JDialog {
 				aux=false;
 				
 				limpiar();
+			//	resetear();
 				loadTable();
 				indentificador.setText("Componentes Agregados");
 				
@@ -242,6 +251,11 @@ public class Ventas extends JDialog {
 		
 					
 				
+				}else {
+					quitar.setVisible(false);
+					quitar.setEnabled(false);
+					indentificador.setEnabled(false);
+					indentificador.setVisible(false);
 				}
 			}
 		});
@@ -256,17 +270,18 @@ public class Ventas extends JDialog {
 		quitar = new JButton("Quitar");
 		quitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(selected != null) {
 				 for (auxiliarCarrito a : carrito1) {
 					 if(selected==a.getCarrito()) {
 						carrito1.remove(a);
 						}
-					 }
+					 }}
+				 if(selected1 != null) {
 				 for (auxiliarCarito2 b : carrito2) {
 					 if(selected1==b.getCarrito()) {
 						carrito2.remove(b);
 						}
-					 }
+					 }}
 				 loadTable();
 			}
 		});
@@ -283,6 +298,11 @@ public class Ventas extends JDialog {
 					Combos c = Tienda.getInstance().buscarcombo(combo.getSelectedItem().toString());				
 					PrecioCombo.setText(String.valueOf(c.getPrecio()));
 					
+					agregar.setEnabled(true);
+				}else {
+					spncombo.setEnabled(false);
+					agregar.setEnabled(false);
+					PrecioCombo.setText("");
 				}
 			}
 		});
@@ -297,6 +317,11 @@ public class Ventas extends JDialog {
 					spntargeta.setEnabled(true);
 					Componente c = Tienda.getInstance().buscarcomponente(combotargeta.getSelectedItem().toString());				
 					PrecioTargeta.setText(String.valueOf(c.getPrecio()));
+					agregar.setEnabled(true);
+				}else {
+					spntargeta.setEnabled(false);
+					agregar.setEnabled(false);
+					PrecioTargeta.setText("");
 				}
 			}
 		});
@@ -311,6 +336,11 @@ public class Ventas extends JDialog {
 					spndisco.setEnabled(true);
 					Componente c = Tienda.getInstance().buscarcomponente(combodisco.getSelectedItem().toString());				
 					PrecioDisco.setText(String.valueOf(c.getPrecio()));
+					agregar.setEnabled(true);
+				}else {
+					spndisco.setEnabled(false);
+					agregar.setEnabled(false);
+					PrecioDisco.setText("");
 				}
 			}
 		});
@@ -325,6 +355,11 @@ public class Ventas extends JDialog {
 					spnram.setEnabled(true);
 					Componente c = Tienda.getInstance().buscarcomponente(comboram.getSelectedItem().toString());				
 					PrecioRam.setText(String.valueOf(c.getPrecio()));
+					agregar.setEnabled(true);
+				}else {
+					spnram.setEnabled(false);
+					agregar.setEnabled(false);
+					PrecioRam.setText("");
 				}
 			}
 		});
@@ -339,6 +374,11 @@ public class Ventas extends JDialog {
 					spnprocesador.setEnabled(true);
 					Componente c = Tienda.getInstance().buscarcomponente(comboprocesador.getSelectedItem().toString());				
 					PrecioProcesador.setText(String.valueOf(c.getPrecio()));
+					agregar.setEnabled(true);
+				}else {
+					spnprocesador.setEnabled(false);
+					agregar.setEnabled(false);
+					PrecioProcesador.setText("");
 				}
 			}
 		});
@@ -400,6 +440,7 @@ public class Ventas extends JDialog {
 		spncombo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				agregar.setVisible(true);
+				agregar.setEnabled(true);
 			}
 		});
 		spncombo.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -408,21 +449,49 @@ public class Ventas extends JDialog {
 		panel.add(spncombo);
 		
 		spntargeta = new JSpinner();
+		spntargeta.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spntargeta.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				agregar.setVisible(true);
+				agregar.setEnabled(true);
+			}
+		});
 		spntargeta.setEnabled(false);
 		spntargeta.setBounds(216, 131, 29, 20);
 		panel.add(spntargeta);
 		
 		spndisco = new JSpinner();
+		spndisco.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spndisco.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				agregar.setVisible(true);
+				agregar.setEnabled(true);
+			}
+		});
 		spndisco.setEnabled(false);
 		spndisco.setBounds(216, 189, 29, 20);
 		panel.add(spndisco);
 		
 		spnram = new JSpinner();
+		spnram.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spnram.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				agregar.setVisible(true);
+				agregar.setEnabled(true);
+			}
+		});
 		spnram.setEnabled(false);
 		spnram.setBounds(216, 243, 29, 20);
 		panel.add(spnram);
 		
 		spnprocesador = new JSpinner();
+		spnprocesador.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spnprocesador.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				agregar.setVisible(true);
+				agregar.setEnabled(true);
+			}
+		});
 		spnprocesador.setEnabled(false);
 		spnprocesador.setBounds(216, 296, 29, 20);
 		panel.add(spnprocesador);
@@ -476,9 +545,14 @@ public class Ventas extends JDialog {
 		comboprocesador.setSelectedIndex(0);
 		
 	}
+	public void resetear() {
+		table.removeAll();
+	}
+	
 	public void loadTable () {
 		model.setRowCount(0);
 		 row = new Object[(model.getColumnCount())];
+		 
 		 for (auxiliarCarito2 pu : carrito2){
 				
 				row[0]=pu.getCarrito().getNombre();

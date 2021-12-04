@@ -475,21 +475,29 @@ public class componenteNuevo extends JDialog {
 						int cantidad = Integer.valueOf(spncantidad.getValue().toString());
 						float precio = Float.valueOf(spnprecio.getValue().toString());
 						int cantidadmininima = Integer.valueOf(spnMinima.getValue().toString());
-					//	if()
 						
 						if(rTarjetaMadre.isSelected()) {
 							compo = new TarjetaMadre(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textfieldMarcam.getText(), textfieldModelom.getText(),textfieldTipoconector.getText(),cbxTipoRam.getSelectedItem().toString(), null);
 						}
 						
 						if(rRam.isSelected()) {
-							compo = new MemoriaRam(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),TextFieldMarcar.getText(),Integer.valueOf(comboBoxCantidadMemoria.getSelectedItem().toString()),textFieldTipoMemoria.getText());
+							// pasando caracteres con letras a int completos normales
+							String h= comboBoxCantidadMemoria.getSelectedItem().toString();
+							int memoriaCANT=Integer.parseInt(h.replaceAll("[\\D]", ""));
+							compo = new MemoriaRam(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),TextFieldMarcar.getText(),memoriaCANT,textFieldTipoMemoria.getText());
 						}
 						
 						if(rDisco.isSelected()) {
-							compo = new Discoduro(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarcad.getText(), textFieldModelod.getText(),Integer.valueOf(cbxCapacidadAlmacenamiento.getSelectedItem().toString()),textFieldTipoConexionD.getText());
+							// pasando caracteres con letras a int completos normales
+							String hh= cbxCapacidadAlmacenamiento.getSelectedItem().toString();
+							int DISCOCANT=Integer.parseInt(hh.replaceAll("[\\D]", ""));
+							compo = new Discoduro(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarcad.getText(), textFieldModelod.getText(),DISCOCANT,textFieldTipoConexionD.getText());
 						}
 						if(rProcesador.isSelected()) {
-							compo = new Microprocesador(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarcap.getText(), textFieldModelopro.getText(),textFieldTipoconetorp.getText(),Integer.valueOf(cbxVelocidad.getSelectedItem().toString()));
+							// pasando caracteres con letras a int completos normales
+							String hhh= cbxVelocidad.getSelectedItem().toString();
+							int velociCANT=Integer.parseInt(hhh.replaceAll("[\\D]", ""));
+							compo = new Microprocesador(nombre, precio, cantidad, numeroserie, cantidadmininima,Tienda.getInstance().buscarProveedor(provedorr.getSelectedItem().toString()),textFieldMarcap.getText(), textFieldModelopro.getText(),textFieldTipoconetorp.getText(),velociCANT);
 						}
 										
 						Tienda.getInstance().introducirComponente(compo);

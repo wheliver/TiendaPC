@@ -178,15 +178,15 @@ public class CrearCombo extends JDialog {
 				okButton = new JButton("Guardar Combo");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-					if(textFieldCombroNombre == null) {
+					if(textFieldCombroNombre.getText() == "") {
 						JOptionPane.showMessageDialog(null,"Debe Registrar un nombre");
 						
 					}
-					if(textFieldCodigo == null) 
+					if(textFieldCodigo.getText() == "") 
 					{
 						JOptionPane.showMessageDialog(null,"Debe Registrar un codigo");
 					}
-					if(Integer.valueOf(spinnerDescuento.getValue().toString()) < 1)
+					if(Float.valueOf(spinnerDescuento.getValue().toString()) <= 0)
 							{
 						JOptionPane.showMessageDialog(null,"Debe poner un descuento de al menos 1%");
 						
