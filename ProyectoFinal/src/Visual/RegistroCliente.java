@@ -42,6 +42,7 @@ public class RegistroCliente extends JDialog {
 	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
 	private int codigodefactura = 0;
 	private int codigodeordendecompra = 0;
+	private static Usuario user=null;
 
 	/**
 	 * Launch the application.
@@ -218,7 +219,7 @@ public class RegistroCliente extends JDialog {
 								//contado
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR AL CONTADO");
 								 // limite de credito preestablecido para los clientes es de 20000 pesos
-								 Usuario us = new Usuario("wheliver","arenoso","","","whe","123");
+								 Usuario us = user;
 								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,us,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",true);
 								Tienda.getInstance().insetarFactura(fa); 
 								 codigodefactura=codigodefactura+1;
@@ -256,7 +257,7 @@ public class RegistroCliente extends JDialog {
 							if(s==0) {
 								//credito
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR A PLAZO");
-								 Usuario us = new Usuario("wheliver","arenoso","","","whe","123");
+								 Usuario us = user;
 								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,us,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",false);
 							Cliente clie = Tienda.getInstance().buscarCliente(textField_Cedula.getText());
 							clie.setCuentasxCobrar(clie.getCuentasxCobrar()+fa.getpreciototal());
@@ -335,5 +336,10 @@ public class RegistroCliente extends JDialog {
 
 	public void setCarrito2(ArrayList<auxiliarCarito2> carrito2) {
 		this.carrito2 = carrito2;
+	}
+
+	public void setusuario(Usuario user2) {
+		// TODO Auto-generated method stub
+		user=user2;
 	}
 }

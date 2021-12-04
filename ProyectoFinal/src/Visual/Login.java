@@ -80,7 +80,9 @@ public class Login extends JFrame {
 				String u = textField_User.getText();
 				String o = textField_Password.getText();
 				if(Tienda.getInstance().confirmLogin(u,o)){
+					
 					Principal frame = new Principal();
+					frame.setusuario(Tienda.getInstance().dameloger(u,o));
 					dispose();
 					frame.setVisible(true);
 				}

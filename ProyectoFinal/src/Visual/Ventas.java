@@ -24,6 +24,7 @@ import logico.MemoriaRam;
 import logico.Microprocesador;
 import logico.TarjetaMadre;
 import logico.Tienda;
+import logico.Usuario;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -71,6 +72,7 @@ public class Ventas extends JDialog {
 	private JSpinner spntargeta;
 	private ArrayList<auxiliarCarrito> carrito1 = new ArrayList<auxiliarCarrito>();
 	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
+	private static Usuario user=null;
 
 	/**
 	 * Launch the application.
@@ -509,6 +511,7 @@ public class Ventas extends JDialog {
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						RegistroCliente res = new RegistroCliente();
+						res.setusuario(user);
 						res.setCarrito1(carrito1);
 						res.setCarrito2(carrito2);
 						res.setVisible(true);
@@ -591,4 +594,8 @@ public class Ventas extends JDialog {
 				
 				}
 	}
+
+	public void setusuario(Usuario userr) {
+		user=userr;
+		}
 }

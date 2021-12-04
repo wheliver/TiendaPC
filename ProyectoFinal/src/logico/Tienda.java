@@ -271,4 +271,15 @@ public void insertarOrdendecompra(OrdenCompra ad) {
 	// TODO Auto-generated method stub
 	mis_orden.add(ad);
 }
+public Usuario dameloger(String u, String o) {
+	// TODO Auto-generated method stub
+	Usuario us = null;
+		for (Usuario user : misusuarios) {
+		if(user.getUsername().equals(u) && user.getPassword().equals(o)){
+		us=user;
+		}
+	}
+	return us;
+	
+}
 };
