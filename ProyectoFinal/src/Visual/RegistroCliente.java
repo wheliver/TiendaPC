@@ -233,8 +233,26 @@ public class RegistroCliente extends JDialog {
 								
 								}
 								}
+								 for (auxiliarCarito2 au2 : carrito2) {
+									for (int i = 0; i < au2.getCantidad(); i++) {
+										
+										 for (Componente au : au2.getCarrito().getMiscomponentes()) {
+												ac =Tienda.getInstance().buscarcomponente(au.getNombre());
+												ac.setCantidadDisponible(ac.getCantidadDisponible()-1);
+												}
+										 		}
+									for (Componente auh : au2.getCarrito().getMiscomponentes()) {
+										ac =Tienda.getInstance().buscarcomponente(auh.getNombre());
+									if(ac.getCantidadDisponible()<=ac.getCantidadminima()) {
+										Date fechadehoy = new Date();
+										OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au2.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "tipo de pago");
+									codigodeordendecompra=codigodeordendecompra +1;
+									Tienda.getInstance().insertarOrdendecompra(ad);
+									
+									}}
+								} 
 								 dispose();
-							}
+														}
 							if(s==0) {
 								//credito
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR A PLAZO");
