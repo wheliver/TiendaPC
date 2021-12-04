@@ -262,6 +262,13 @@ public boolean confirmLogin(String text, String text2) {
 }
 public void insertarUsuario(Usuario a) {
 	misusuarios.add(a);
-	
+}
+public void insetarFactura(Factura f) {
+	// TODO Auto-generated method stub
+	misfacturas.add(f);
+}
+public void insertarOrdendecompra(OrdenCompra ad) {
+	// TODO Auto-generated method stub
+	mis_orden.add(ad);
 }
 };

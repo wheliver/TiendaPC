@@ -11,13 +11,19 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import logico.Cliente;
+import logico.Combos;
+import logico.Componente;
+import logico.Factura;
+import logico.OrdenCompra;
 import logico.Tienda;
+import logico.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class RegistroCliente extends JDialog {
@@ -32,8 +38,10 @@ public class RegistroCliente extends JDialog {
 	private Cliente cli = null;
 	private JTextField textFieldBuscar;
 	private JButton SalirButton;
-	private ArrayList<auxiliarCarrito> carrito1;
-	private ArrayList<auxiliarCarito2> carrito2;
+	private ArrayList<auxiliarCarrito> carrito1 = new ArrayList<auxiliarCarrito>();
+	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
+	private int codigodefactura = 0;
+	private int codigodeordendecompra = 0;
 
 	/**
 	 * Launch the application.
@@ -174,7 +182,6 @@ public class RegistroCliente extends JDialog {
 						
 						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
 						
-						
 						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getSelectedText(),textField_Cedula.getText());
 						Tienda.getInstance().insertarCliente(a);
 						Tienda.getInstance().guardarTienda();
@@ -190,6 +197,8 @@ public class RegistroCliente extends JDialog {
 							}
 					
 						if(RegistrarButton.getText().equalsIgnoreCase("Comprar")) {
+							Componente ac = null;
+							Combos acc=null;
 							// terminar el proceso de comprar 
 							int s=	JOptionPane.showOptionDialog(
 									RegistrarButton,
@@ -208,6 +217,22 @@ public class RegistroCliente extends JDialog {
 							if(s==1) {
 								//contado
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR AL CONTADO");
+								 // limite de credito preestablecido para los clientes es de 20000 pesos
+								 Usuario us = new Usuario("wheliver","arenoso","","","whe","123");
+								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,us,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",true);
+								Tienda.getInstance().insetarFactura(fa); 
+								 codigodefactura=codigodefactura+1;
+								 for (auxiliarCarrito au : carrito1) {
+								ac =Tienda.getInstance().buscarcomponente(au.getCarrito().getNombre());
+								ac.setCantidadDisponible(ac.getCantidadDisponible()-au.getCantidad());
+								if(ac.getCantidadDisponible()<=ac.getCantidadminima()) {
+									Date fechadehoy = new Date();
+									OrdenCompra ad = new OrdenCompra(String.valueOf(codigodeordendecompra),fechadehoy,"Proceso",(au.getCantidad()*2),ac,ac.getPrecio(),ac.getProveedor(), "tipo de pago");
+								codigodeordendecompra=codigodeordendecompra +1;
+								Tienda.getInstance().insertarOrdendecompra(ad);
+								
+								}
+								}
 								 dispose();
 							}
 							if(s==0) {
