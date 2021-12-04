@@ -41,7 +41,10 @@ public class ListaComponentes extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		try {
+			Tienda.getInstance().cargarTienda();
+			System.out.println(Tienda.getInstance().getMiscomponentes().size());
 			ListaComponentes dialog = new ListaComponentes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -62,11 +65,12 @@ public class ListaComponentes extends JDialog {
 		model = new DefaultTableModel();
 		String [] headers = {"Nombre","Precio","Cantidad disponible","Proveedor","Tipo Componente"};
 		model.setColumnIdentifiers(headers);
+	row = new Object[model.getColumnCount()];
 		for (Componente pu : Tienda.getInstance().getMiscomponentes()){
 			 row[0]=pu.getNombre();
 			    row[1]=pu.getPrecio();
 			    row[2] =pu.getCantidadDisponible();
-			    row[3] = pu.getProveedor().getNombre();
+			   // row[3] = pu.getProveedor().getNombre();
 				model.addRow(row);
 			 
 		 }

@@ -1,6 +1,12 @@
 package logico;
 
-public class Componente {
+import java.io.Serializable;
+
+public class Componente implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2233352669269601963L;
 protected String nombre;
 protected float precio;
 protected int cantidadDisponible;

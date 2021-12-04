@@ -1,12 +1,22 @@
 package logico;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-
-public class Tienda {
+public class Tienda implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6634036610616475881L;
 private int cantClientesReal;
 ArrayList<Combos>miscombos;
 ArrayList<Factura>misfacturas;
+ArrayList<Usuario>misusuarios;
 ArrayList<Cliente>misclientes;
 ArrayList<OrdenCompra>mis_orden;
 ArrayList<Componente>miscomponentes;
@@ -21,6 +31,7 @@ public Tienda() {
 	this.misclientes =  new ArrayList<Cliente>();
 	this.mis_orden = new ArrayList<OrdenCompra>();
 	this.miscomponentes = new ArrayList<Componente>();
+	this.misusuarios = new ArrayList<Usuario>();
 	this.cantClientesReal=0;
 	this.misproveedores = new ArrayList<Proveedor>();
 }
@@ -31,11 +42,45 @@ public Tienda() {
 		}
 		return instanciaGlobal;
 	}
+//Fichero
+public void cargarTienda()  {
+			FileInputStream file;
+			ObjectInputStream oos;
+			try {
+				file = new FileInputStream("Tienda.dat");
+				oos = new ObjectInputStream(file);
+				Tienda.setInstanciaGlobal((Tienda)oos.readObject());
+				oos.close();
+			} catch(IOException | ClassNotFoundException e) 
+			{
+				Tienda.getInstance().guardarTienda();
+			}
+		}
+	
+public void guardarTienda() {
+	FileOutputStream file;
+	try {
+		file = new FileOutputStream("Tienda.dat");
+		ObjectOutputStream oos = new ObjectOutputStream(file);
+		oos.writeObject(Tienda.getInstance());
+		oos.close();
+	} catch(IOException e)
+	{
+		e.printStackTrace();
+	}
+	
+}
 public ArrayList<OrdenCompra> getMis_orden() {
 		return mis_orden;
 	}
 	public ArrayList<Componente> getMiscomponentes() {
 		return miscomponentes;
+	}
+	public ArrayList<Usuario> getMisusuarios() {
+		return misusuarios;
+	}
+	public void setMisusuarios(ArrayList<Usuario> misusuarios) {
+		this.misusuarios = misusuarios;
 	}
 	public ArrayList<Proveedor> getMisproveedores() {
 		return misproveedores;
@@ -95,15 +140,21 @@ public Cliente buscarCliente(String Cedula) {
 	boolean encontrado = false;
 	int buscador=0;
 	
-	while(!encontrado && buscador<cantClientesReal ) {
+	/*while(!encontrado && buscador<cantClientesReal ) {
 		if(misclientes.get(buscador).getCedula().equalsIgnoreCase(Cedula)) {
 			encontrado=true;
 			aux= misclientes.get(buscador);
 		}
-		buscador++;
+		buscador++;*/
+	for(Cliente client : Tienda.getInstance().misclientes) {
+		if(client.getCedula().equalsIgnoreCase(Cedula)) 
+		{
+			aux = client;
+		}
+		
 	}
-	
 	return aux;
+
 }
 public void CrearOrdendecompra(String codigo, Date fecha, String estado, int cantidad, Componente compo, float preciounitario,
 		Proveedor proveedor, String tipodepago) {
@@ -199,5 +250,18 @@ public void insertarProveedor(Proveedor a) {
 public String tipoComponente(Componente componente) {
 	// TODO Auto-generated method stub
 	return null;
+}
+public boolean confirmLogin(String text, String text2) {
+	boolean login = false;
+	for (Usuario user : misusuarios) {
+		if(user.getUsername().equals(text) && user.getPassword().equals(text2)){
+			login = true;
+		}
+	}
+	return login;
+}
+public void insertarUsuario(Usuario a) {
+	misusuarios.add(a);
+	
 }
 };

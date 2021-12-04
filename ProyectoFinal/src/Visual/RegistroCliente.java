@@ -30,7 +30,7 @@ public class RegistroCliente extends JDialog {
 	private JTextField textField_Telefono;
 	private JTextField textField_Cedula;
 	private Cliente cli = null;
-	private JTextField textField;
+	private JTextField textFieldBuscar;
 	private JButton SalirButton;
 	private ArrayList<auxiliarCarrito> carrito1;
 	private ArrayList<auxiliarCarito2> carrito2;
@@ -40,6 +40,8 @@ public class RegistroCliente extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			Tienda.getInstance().cargarTienda();
+			System.out.println(Tienda.getInstance().getMisclientes().size());
 			RegistroCliente dialog = new RegistroCliente();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -122,15 +124,15 @@ public class RegistroCliente extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(166, 11, 217, 20);
-		panel.add(textField);
+		textFieldBuscar = new JTextField();
+		textFieldBuscar.setColumns(10);
+		textFieldBuscar.setBounds(166, 11, 217, 20);
+		panel.add(textFieldBuscar);
 		
 		JButton button = new JButton("Buscar cliente");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cli = Tienda.getInstance().buscarCliente(textField_Cedula.getText());
+				cli = Tienda.getInstance().buscarCliente(textFieldBuscar.getText().toString());
 				if (cli == null) {
 					textField_Nombre.setEnabled(true);
 					textField_direccion.setEnabled(true);
@@ -169,12 +171,15 @@ public class RegistroCliente extends JDialog {
 				RegistrarButton = new JButton("");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
 						
 						
 						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getSelectedText(),textField_Cedula.getText());
 						Tienda.getInstance().insertarCliente(a);
+						Tienda.getInstance().guardarTienda();
 						 JOptionPane.showMessageDialog(null,"Registro Satisfactorio","Informacion",JOptionPane.INFORMATION_MESSAGE);
+						 dispose();						 
 		                 //clean();
 						 
 		                 textField_Nombre.setEnabled(false);
@@ -214,6 +219,7 @@ public class RegistroCliente extends JDialog {
 						//	JOptionPane.showOptionDialog(RegistrarButton,"Selecciones un Metodo de Pago","Metodos De Pago",JOptionPane.YES_NO_CANCEL_OPTION,null,JOptionPane.QUESTION_MESSAGE,new Object[] { "Credito", "Contado", "Cancel"});
 							dispose();
 						}
+						
 					}
 				});
 				RegistrarButton.setActionCommand("OK");
@@ -225,7 +231,7 @@ public class RegistroCliente extends JDialog {
 				SalirButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						
+						dispose();
 						
 					}
 				});

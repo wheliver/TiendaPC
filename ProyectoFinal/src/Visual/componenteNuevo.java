@@ -82,6 +82,7 @@ public class componenteNuevo extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			Tienda.getInstance().cargarTienda();
 			componenteNuevo dialog = new componenteNuevo();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -493,6 +494,7 @@ public class componenteNuevo extends JDialog {
 						}
 										
 						Tienda.getInstance().introducirComponente(compo);
+						Tienda.getInstance().guardarTienda();
 						JOptionPane.showMessageDialog(null, "Se Introdujo correctamente el Componente ");
 						limpiarVentana();
 						}else{
