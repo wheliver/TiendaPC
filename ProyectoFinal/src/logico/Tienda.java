@@ -282,4 +282,18 @@ public Usuario dameloger(String u, String o) {
 	return us;
 	
 }
+public OrdenCompra buscarOrdendecompra(String valueAt) {
+	OrdenCompra aux = null;
+	boolean encontrado = false;
+	int indexBuscador=0;
+	
+	while (!encontrado && indexBuscador<mis_orden.size()) {
+		if(mis_orden.get(indexBuscador).getCodigo().equalsIgnoreCase(valueAt)) {
+			aux = mis_orden.get(indexBuscador);
+			encontrado = true;				
+		}
+		indexBuscador++;
+	}
+	return aux;
+}
 };

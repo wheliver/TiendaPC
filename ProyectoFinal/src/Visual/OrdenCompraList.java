@@ -91,10 +91,12 @@ public class OrdenCompraList extends JDialog {
 							selected.setEstado("Confirmado");
 							btnEstado.setEnabled(false);
 							//Total(cantidad*preciunitario) se le sume a la cuenta por pagar 
-							selected.getProveedor().setCuentaxpagar((selected.getCantidad()*selected.getPreciounitario())+ selected1.getProveedor().getCuentaxpagar());
+							selected.getProveedor().setCuentaxpagar((selected.getCantidad()*selected.getPreciounitario())+ selected.getProveedor().getCuentaxpagar());
 						}
+						
 						if(selected.getEstado().equalsIgnoreCase("Confirmado"))
 						{
+		
 							selected.setEstado("Entregado");
 							btnEstado.setEnabled(false);
 							selected1.setCantidadDisponible(selected.getCantidad()+ selected1.getCantidadDisponible());
@@ -124,7 +126,10 @@ public class OrdenCompraList extends JDialog {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					int aux = table.getSelectedRow();
+					
 					if(aux!=-1){
+						selected = Tienda.getInstance().buscarOrdendecompra((String) table.getValueAt(aux, 0));
+						selected1 = selected.getCompo();
 						btnSalir.setEnabled(true);
 						btnEstado.setEnabled(true);
 
@@ -132,11 +137,13 @@ public class OrdenCompraList extends JDialog {
 						{
 							btnEstado.setText("Confirmar");
 							btnEstado.setVisible(true);
+							btnEstado.setEnabled(true);
 						}
-						if(selected.getEstado().equalsIgnoreCase("Confirmar"))
+						if(selected.getEstado().equalsIgnoreCase("Confirmado"))
 						{
 							btnEstado.setText("Completar");
 							btnEstado.setVisible(true);
+							btnEstado.setEnabled(true);
 						}
 				}
 				}
