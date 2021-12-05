@@ -8,8 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
 import logico.Componente;
 import logico.OrdenCompra;
+import logico.Proveedor;
 import logico.Tienda;
 
 import javax.swing.JScrollPane;
@@ -36,6 +38,7 @@ public class ListaComponentes extends JDialog {
 	private JScrollPane scrollPane;
 	private Componente selected = null;
 	private JButton btnModificar;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -70,7 +73,7 @@ public class ListaComponentes extends JDialog {
 			 row[0]=pu.getNombre();
 			    row[1]=pu.getPrecio();
 			    row[2] =pu.getCantidadDisponible();
-			   // row[3] = pu.getProveedor().getNombre();
+			   row[3] = pu.getProveedor().getNombre();
 				model.addRow(row);
 			 
 		 }
@@ -140,7 +143,18 @@ public class ListaComponentes extends JDialog {
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String busqueda = "";
+				busqueda = comboBox.getSelectedItem().toString();
+				if(comboBox.getSelectedIndex()==0) {
+					loadTable("", 1);
+				}else {
+					loadTable(busqueda, 2);
+				}
+			}
+		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"           <<Todos>>", "Tarjeta Madre", "Disco duro", "Memoria ram", "Microprocesador"}));
 		comboBox.setBounds(54, 36, 150, 20);
 		panel_1.add(comboBox);
@@ -153,15 +167,33 @@ public class ListaComponentes extends JDialog {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
 		if(opcion == 1) {
-			for (int i = 0; i<Tienda.getInstance().getMiscomponentes().size(); i++) {
-				row[0] = Tienda.getInstance().getMiscomponentes().get(i).getNombre();
-				row[1] = Tienda.getInstance().getMiscomponentes().get(i).getPrecio();
-				row[2] = Tienda.getInstance().getMiscomponentes().get(i).getCantidadDisponible();
-				row[3] = Tienda.getInstance().getMisproveedores().get(i).getNombre();
-				String tipoComponente=  Tienda.getInstance().tipoComponente((Tienda.getInstance().getMiscomponentes().get(i)));
-				row[4] = tipoComponente;
-				model.addRow(row);
+			for (int i = 0; i < Tienda.getInstance().getMiscomponentes().size(); i++) {
+				String tipoPublicacion = Tienda.getInstance().tipoCompo(Tienda.getInstance().getMiscomponentes().get(i));
+				if( tipoPublicacion.equalsIgnoreCase(busqueda) ) {
+					row[0] = Tienda.getInstance().getMiscomponentes().get(i).getNombre();
+					row[1] = Tienda.getInstance().getMiscomponentes().get(i).getPrecio();
+					row[2] = Tienda.getInstance().getMiscomponentes().get(i).getCantidadDisponible();
+					String tipoComponente1 =Tienda.getInstance().tipoComponente((Tienda.getInstance().getMiscomponentes().get(i)));
+					row[3] = tipoComponente1;
+					model.addRow(row);
+				}
 			}
+		}
+        if (opcion == 2) {
+			
+			for (int i = 0; i < Tienda.getInstance().getMiscomponentes().size(); i++) {
+				String tipoPublicacion = Tienda.getInstance().tipoCompo(Tienda.getInstance().getMiscomponentes().get(i));
+				if( tipoPublicacion.equalsIgnoreCase(busqueda) ) {
+					row[0] = Tienda.getInstance().getMiscomponentes().get(i).getNombre();
+					row[1] = Tienda.getInstance().getMiscomponentes().get(i).getPrecio();
+					row[2] = Tienda.getInstance().getMiscomponentes().get(i).getCantidadDisponible();
+					String tipoComponente2 =Tienda.getInstance().tipoComponente((Tienda.getInstance().getMiscomponentes().get(i)));
+					row[3] = tipoComponente2;
+					model.addRow(row);
+				}
+			}
+			
 		}
 	}
 }
+

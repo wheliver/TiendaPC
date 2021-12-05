@@ -296,4 +296,21 @@ public OrdenCompra buscarOrdendecompra(String valueAt) {
 	}
 	return aux;
 }
+public String tipoCompo(Componente componente) {
+	String tipoCompo = "";
+	if(componente instanceof Discoduro) {
+		tipoCompo = "Disco duro";
+	}		
+	if(componente instanceof TarjetaMadre) {
+		tipoCompo = "Tarjeta Madre";
+	}		
+		
+	if(componente instanceof MemoriaRam) {
+		tipoCompo = "Memoria ram";
+	}
+	if(componente instanceof Microprocesador) {
+		tipoCompo = "Microprocesador";
+	}
+	return tipoCompo;
+}
 };
