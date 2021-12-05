@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logico.Tienda;
+import logico.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -83,8 +84,8 @@ public class Login extends JFrame {
 					
 					Principal frame = new Principal();
 					frame.setusuario(Tienda.getInstance().dameloger(u,o));
+						frame.setVisible(true);
 					dispose();
-					frame.setVisible(true);
 				}
 				else
 				{

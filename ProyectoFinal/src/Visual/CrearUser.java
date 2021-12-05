@@ -125,7 +125,7 @@ public class CrearUser extends JDialog {
 				btnRegistrar = new JButton("Registrar");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String b =  textFieldNombre.getSelectedText();
+						String b = textFieldNombre.getText();
 						String c = textFieldDireccion.getText();
 						String d = textFieldTelefono.getText();
 						String h = textFieldUsername.getText();

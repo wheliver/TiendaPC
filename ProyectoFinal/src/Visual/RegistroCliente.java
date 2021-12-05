@@ -42,7 +42,7 @@ public class RegistroCliente extends JDialog {
 	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
 	private int codigodefactura = 1;
 	private int codigodeordendecompra = 1;
-	private static Usuario user=null;
+	private  Usuario user=null;
 
 	/**
 	 * Launch the application.
@@ -180,7 +180,7 @@ public class RegistroCliente extends JDialog {
 				RegistrarButton = new JButton("");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+
 						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
 						
 						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getText(),textField_Cedula.getText());
@@ -219,8 +219,8 @@ public class RegistroCliente extends JDialog {
 								//contado
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR AL CONTADO");
 								 // limite de credito preestablecido para los clientes es de 20000 pesos
-								 Usuario us = user;
-								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,us,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",true);
+								 
+								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,user,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",true);
 								 fa.setMiscombos(carrito2);
 								 fa.setMiscomponentes(carrito1);
 								Tienda.getInstance().insetarFactura(fa); 
@@ -259,8 +259,8 @@ public class RegistroCliente extends JDialog {
 							if(s==0) {
 								//credito
 								 JOptionPane.showMessageDialog(null,"GRACIAS POR COMPRAR A PLAZO");
-								 Usuario us = user;
-								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,us,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",false);
+								
+								 Factura fa = new Factura(String.valueOf(codigodefactura),20000,user,carrito2,carrito1,Tienda.getInstance().buscarCliente(textField_Cedula.getText()),"contado",false);
 								 fa.setMiscombos(carrito2);
 								 fa.setMiscomponentes(carrito1);							
 								 Cliente clie = Tienda.getInstance().buscarCliente(textField_Cedula.getText());

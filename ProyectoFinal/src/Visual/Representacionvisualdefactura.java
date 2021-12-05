@@ -72,11 +72,11 @@ public class Representacionvisualdefactura extends JDialog {
 		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("CODIGO:");
-		lblNewLabel_1.setBounds(10, 69, 46, 14);
+		lblNewLabel_1.setBounds(10, 69, 56, 14);
 		contentPanel.add(lblNewLabel_1);
 		
 		JLabel lblCliente = new JLabel("CLIENTE:");
-		lblCliente.setBounds(10, 94, 46, 14);
+		lblCliente.setBounds(10, 94, 56, 14);
 		contentPanel.add(lblCliente);
 		
 		JLabel lblVendedor = new JLabel("VENDEDOR:");
@@ -84,7 +84,7 @@ public class Representacionvisualdefactura extends JDialog {
 		contentPanel.add(lblVendedor);
 		
 		JLabel lblTipoDePago = new JLabel("Tipo de Pago");
-		lblTipoDePago.setBounds(409, 69, 72, 14);
+		lblTipoDePago.setBounds(409, 69, 85, 14);
 		contentPanel.add(lblTipoDePago);
 		
 		JLabel lblEstado = new JLabel("Estado:");
@@ -92,23 +92,23 @@ public class Representacionvisualdefactura extends JDialog {
 		contentPanel.add(lblEstado);
 		
 		codigo = new JLabel("");
-		codigo.setBounds(66, 69, 46, 14);
+		codigo.setBounds(66, 69, 296, 14);
 		contentPanel.add(codigo);
 		
 		cliente = new JLabel("");
-		cliente.setBounds(66, 94, 46, 14);
+		cliente.setBounds(66, 94, 296, 14);
 		contentPanel.add(cliente);
 		
 		vendedor = new JLabel("");
-		vendedor.setBounds(76, 119, 46, 14);
+		vendedor.setBounds(76, 119, 286, 14);
 		contentPanel.add(vendedor);
 		
 		tipodepago = new JLabel("");
-		tipodepago.setBounds(316, 69, 46, 14);
+		tipodepago.setBounds(497, 69, 135, 14);
 		contentPanel.add(tipodepago);
 		
 		estado = new JLabel("");
-		estado.setBounds(289, 94, 46, 14);
+		estado.setBounds(466, 94, 166, 14);
 		contentPanel.add(estado);
 		{
 			JPanel buttonPane = new JPanel();
@@ -146,7 +146,7 @@ public class Representacionvisualdefactura extends JDialog {
 		contentPanel.add(lblTotal);
 		
 		total = new JLabel("");
-		total.setBounds(316, 427, 46, 14);
+		total.setBounds(520, 427, 112, 14);
 		contentPanel.add(total);
 		loadTable();
 	}

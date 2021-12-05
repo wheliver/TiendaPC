@@ -95,6 +95,7 @@ public class LisFactura extends JDialog {
 				rp.setTotal(String.valueOf(selected.getpreciototal()));
 				rp.setCarrito1(selected.getMiscomponentes());
 				rp.setCarrito2(selected.getMiscombos());
+				rp.loadTable();
 				rp.setVisible(true);
 				
 			}
@@ -161,7 +162,7 @@ public class LisFactura extends JDialog {
 					btnver.setEnabled(true);
 					btnCambiarEstado.setEnabled(true);
 
-					if(selected.Pagado() == false)
+					if(selected.isPagado() == false)
 					{
 						btnCambiarEstado.setText("Pagar");
 						btnCambiarEstado.setVisible(true);

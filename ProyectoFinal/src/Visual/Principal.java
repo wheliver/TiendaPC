@@ -15,6 +15,7 @@ import logico.Usuario;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -26,7 +27,7 @@ import javax.swing.JDialog;
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
-	private static Usuario user=null;
+	private  Usuario user=null;
 
 	/**
 	 * Launch the application.
@@ -71,6 +72,7 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Ventas v= new Ventas();
 				v.setusuario(user);
+
 				v.setVisible(true);
 				
 			}

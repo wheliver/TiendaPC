@@ -280,8 +280,7 @@ public Usuario dameloger(String u, String o) {
 		}
 	}
 	return us;
-	
-}
+	}
 public OrdenCompra buscarOrdendecompra(String valueAt) {
 	OrdenCompra aux = null;
 	boolean encontrado = false;

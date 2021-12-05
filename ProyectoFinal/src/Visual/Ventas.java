@@ -72,7 +72,7 @@ public class Ventas extends JDialog {
 	private JSpinner spntargeta;
 	private ArrayList<auxiliarCarrito> carrito1 = new ArrayList<auxiliarCarrito>();
 	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
-	private static Usuario user=null;
+	private  Usuario user=null;
 
 	/**
 	 * Launch the application.
@@ -564,6 +564,7 @@ public class Ventas extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						RegistroCliente res = new RegistroCliente();
 						res.setusuario(user);
+
 						res.setCarrito1(carrito1);
 						res.setCarrito2(carrito2);
 						res.setVisible(true);
