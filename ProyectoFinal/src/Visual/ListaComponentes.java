@@ -10,8 +10,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logico.Componente;
+import logico.Discoduro;
+import logico.MemoriaRam;
+import logico.Microprocesador;
 import logico.OrdenCompra;
 import logico.Proveedor;
+import logico.TarjetaMadre;
 import logico.Tienda;
 
 import javax.swing.JScrollPane;
@@ -146,13 +150,9 @@ public class ListaComponentes extends JDialog {
 		comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String busqueda = "";
-				busqueda = comboBox.getSelectedItem().toString();
-				if(comboBox.getSelectedIndex()==0) {
-					loadTable("", 1);
-				}else {
-					loadTable(busqueda, 2);
-				}
+		
+				loadTable(comboBox.getSelectedIndex());
+						
 			}
 		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"           <<Todos>>", "Tarjeta Madre", "Disco duro", "Memoria ram", "Microprocesador"}));
@@ -163,37 +163,87 @@ public class ListaComponentes extends JDialog {
 		lblNewLabel.setBounds(54, 11, 150, 14);
 		panel_1.add(lblNewLabel);
 	}
-	public void loadTable(String busqueda, int opcion) {
+	public void loadTable(int opcion) {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
+		String tipoCompo = "Todos";
+		if(opcion == 0) {
+			for (Componente componenter : Tienda.getInstance().getMiscomponentes()) {
+
+				if(componenter instanceof Discoduro) {
+					tipoCompo = "Disco duro";
+				}		
+				if(componenter instanceof TarjetaMadre) {
+					tipoCompo = "Tarjeta Madre";
+				}		
+					
+				if(componenter instanceof MemoriaRam) {
+					tipoCompo = "Memoria ram";
+				}
+				if(componenter instanceof Microprocesador) {
+					tipoCompo = "Microprocesador";
+				}
+				row[0] = componenter.getNombre();
+				row[1] = componenter.getPrecio();
+				row[2] = componenter.getCantidadDisponible();
+				row[3]= componenter.getProveedor().getNombre();
+				row[4] = tipoCompo;
+				model.addRow(row);
+			}
+							
+				}
 		if(opcion == 1) {
-			for (int i = 0; i < Tienda.getInstance().getMiscomponentes().size(); i++) {
-				String tipoPublicacion = Tienda.getInstance().tipoCompo(Tienda.getInstance().getMiscomponentes().get(i));
-				if( tipoPublicacion.equalsIgnoreCase(busqueda) ) {
-					row[0] = Tienda.getInstance().getMiscomponentes().get(i).getNombre();
-					row[1] = Tienda.getInstance().getMiscomponentes().get(i).getPrecio();
-					row[2] = Tienda.getInstance().getMiscomponentes().get(i).getCantidadDisponible();
-					String tipoComponente1 =Tienda.getInstance().tipoComponente((Tienda.getInstance().getMiscomponentes().get(i)));
-					row[3] = tipoComponente1;
+			for (Componente componenter : Tienda.getInstance().getMiscomponentes()) {
+
+				if(componenter instanceof Discoduro) {
+					tipoCompo = "Disco duro";
+				}		
+				if(componenter instanceof TarjetaMadre) {
+					tipoCompo = "Tarjeta Madre";
+					row[0] = componenter.getNombre();
+					row[1] = componenter.getPrecio();
+					row[2] = componenter.getCantidadDisponible();
+					row[3]= componenter.getProveedor().getNombre();
+					row[4] = tipoCompo;
 					model.addRow(row);
-				}
-			}
-		}
-        if (opcion == 2) {
-			
-			for (int i = 0; i < Tienda.getInstance().getMiscomponentes().size(); i++) {
-				String tipoPublicacion = Tienda.getInstance().tipoCompo(Tienda.getInstance().getMiscomponentes().get(i));
-				if( tipoPublicacion.equalsIgnoreCase(busqueda) ) {
-					row[0] = Tienda.getInstance().getMiscomponentes().get(i).getNombre();
-					row[1] = Tienda.getInstance().getMiscomponentes().get(i).getPrecio();
-					row[2] = Tienda.getInstance().getMiscomponentes().get(i).getCantidadDisponible();
-					String tipoComponente2 =Tienda.getInstance().tipoComponente((Tienda.getInstance().getMiscomponentes().get(i)));
-					row[3] = tipoComponente2;
+				}}}
+		if(opcion == 2) {
+			for (Componente componenter : Tienda.getInstance().getMiscomponentes()) {
+
+				if(componenter instanceof Discoduro) {
+					tipoCompo = "Disco duro";
+					row[0] = componenter.getNombre();
+					row[1] = componenter.getPrecio();
+					row[2] = componenter.getCantidadDisponible();
+					row[3]= componenter.getProveedor().getNombre();
+					row[4] = tipoCompo;
 					model.addRow(row);
-				}
-			}
-			
-		}
+				}}}
+		if(opcion == 3) {
+			for (Componente componenter : Tienda.getInstance().getMiscomponentes()) {
+
+				if(componenter instanceof  MemoriaRam) {
+					tipoCompo = "MemoriaRam";
+					row[0] = componenter.getNombre();
+					row[1] = componenter.getPrecio();
+					row[2] = componenter.getCantidadDisponible();
+					row[3]= componenter.getProveedor().getNombre();
+					row[4] = tipoCompo;
+					model.addRow(row);
+				}}}
+		if(opcion == 4) {
+			for (Componente componenter : Tienda.getInstance().getMiscomponentes()) {
+
+				if(componenter instanceof   Microprocesador) {
+					tipoCompo = "Microprocesador";
+					row[0] = componenter.getNombre();
+					row[1] = componenter.getPrecio();
+					row[2] = componenter.getCantidadDisponible();
+					row[3]= componenter.getProveedor().getNombre();
+					row[4] = tipoCompo;
+					model.addRow(row);
+				}}}
+		
 	}
 }
 
