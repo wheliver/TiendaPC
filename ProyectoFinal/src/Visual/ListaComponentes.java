@@ -153,7 +153,7 @@ public class ListaComponentes extends JDialog {
 		JLabel lblNewLabel = new JLabel("Tipo de componentes");
 		lblNewLabel.setBounds(54, 11, 150, 14);
 		panel_1.add(lblNewLabel);
-		loadTable(0);
+		loadTable(1);
 	}
 	public void loadTable(int opcion) {
 		model.setRowCount(0);

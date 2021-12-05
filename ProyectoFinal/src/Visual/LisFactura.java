@@ -81,8 +81,16 @@ public class LisFactura extends JDialog {
 				{
 					
 				selected = Tienda.getInstance().buscarFacturaCodigo((String) table.getValueAt(select, 0));
-				 ArrayList<String> rr = new  ArrayList<String>();
-				 String tipo="";
+				Representacionvisualdefactura rp = new Representacionvisualdefactura();
+				rp.setCodigo(selected.getCodigo());
+				rp.setCliente(selected.getCliente().getNombre());
+				rp.setEstado(selected.isPagado());
+				rp.setTipodepago(selected.getTipodepago());
+				rp.setVendedor(selected.getVendedor().getNombre());
+				rp.setTotal(String.valueOf(selected.getpreciototal()));
+				rp.setCarrito1(selected.getMiscomponentes());
+				rp.setCarrito2(selected.getMiscombos());
+				rp.setVisible(true);
 				
 			}
 			}
@@ -124,28 +132,6 @@ public class LisFactura extends JDialog {
 				loadTable(clientt);
 				}
 			}
-
-	public void loadTable (Cliente clientt) {
-	model.setRowCount(0);
-	 row = new Object[(model.getColumnCount())];
-	 
-	if(clientt==null) {
-		JOptionPane.showMessageDialog(null,"ESTE CLIENTE NUNCA A REALIZADO UNA COMPRA POR FAVOR COMPRE PARA TENER FACTURAS");
-	}else{
-		 for (Factura pu : Tienda.getInstance().getMisfacturas()){
-			
-			 if(pu.getCliente().getCedula().equalsIgnoreCase(clientt.getCedula()) ) {
-			row[0]=pu.getCodigo();
-		    row[1]=pu.getpreciototal();
-			row[2] =pu.getCliente().getNombre();
-			row[3] =pu.getVendedor().getNombre();
-			row[4] =pu.Pagado();
-			model.addRow(row);
-			}
-			 
-		}}
-	 
-}
 		});
 		btnBuscar.setBounds(459, 11, 118, 23);
 		panel_2.add(btnBuscar);
@@ -189,5 +175,25 @@ public class LisFactura extends JDialog {
 		table.setModel(model);
 	
 	}
-
+	public void loadTable (Cliente clientt) {
+	model.setRowCount(0);
+	 row = new Object[(model.getColumnCount())];
+	 
+	if(clientt==null) {
+		JOptionPane.showMessageDialog(null,"ESTE CLIENTE NUNCA A REALIZADO UNA COMPRA POR FAVOR COMPRE PARA TENER FACTURAS");
+	}else{
+		 for (Factura pu : Tienda.getInstance().getMisfacturas()){
+			
+			 if(pu.getCliente().getCedula().equalsIgnoreCase(clientt.getCedula()) ) {
+			row[0]=pu.getCodigo();
+		    row[1]=pu.getpreciototal();
+			row[2] =pu.getCliente().getNombre();
+			row[3] =pu.getVendedor().getNombre();
+			row[4] =pu.Pagado();
+			model.addRow(row);
+			}
+			 
+		}}
+	 
+}
 }
