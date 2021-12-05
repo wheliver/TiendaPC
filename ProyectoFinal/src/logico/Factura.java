@@ -41,6 +41,9 @@ private static final long serialVersionUID = -17876355794681696L;
 		preciototall();
 		return preciototal;
 	}
+	public boolean isPagado() {
+		return pagado;
+	}
 	public Usuario getVendedor() {
 		return vendedor;
 	}

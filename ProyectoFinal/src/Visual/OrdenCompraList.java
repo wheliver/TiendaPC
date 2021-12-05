@@ -42,6 +42,7 @@ public class OrdenCompraList extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			Tienda.getInstance().cargarTienda();
 			OrdenCompraList dialog = new OrdenCompraList();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);

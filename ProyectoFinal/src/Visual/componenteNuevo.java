@@ -578,7 +578,7 @@ public class componenteNuevo extends JDialog {
 		//Microprocesador
 		String marcap = textFieldMarcap.getText();
 		String modelop=  textFieldModelopro.getText();
-		String conectorp = textFieldTipoConexionD.getText();
+		String conectorp =textFieldTipoconetorp.getText();
 		
 		float unitario = Float.valueOf(spncantidad.getValue().toString());
 		float Base = Float.valueOf(spnprecio.getValue().toString());
