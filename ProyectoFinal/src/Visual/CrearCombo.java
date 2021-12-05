@@ -178,51 +178,10 @@ public class CrearCombo extends JDialog {
 				okButton = new JButton("Guardar Combo");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-					if(textFieldCombroNombre.getText() == "") {
-						JOptionPane.showMessageDialog(null,"Debe Registrar un nombre");
-						
-					}
-					if(textFieldCodigo.getText() == "") 
-					{
-						JOptionPane.showMessageDialog(null,"Debe Registrar un codigo");
-					}
-					if(Float.valueOf(spinnerDescuento.getValue().toString()) <= 0)
-							{
-						JOptionPane.showMessageDialog(null,"Debe poner un descuento de al menos 1%");
-						
-							}
-					if(ComboTarjetaMadre.getSelectedItem().toString() == "                                         Seleccionar" ) 
-					{
-						JOptionPane.showMessageDialog(null,"Debe agregar una tarjeta madre");
-					}
-					if(ComboDisco.getSelectedItem().toString() == "                                         Seleccionar" ) 
-					{
-						JOptionPane.showMessageDialog(null,"Debe agregar un disco duro");
-					}
-					if(ComboRam.getSelectedItem().toString() == "                                         Seleccionar" ) 
-					{
-						JOptionPane.showMessageDialog(null,"Debe agregar una Memoria Ram");
-					}
-					if(ComboMircroprocesador.getSelectedItem().toString() == "                                         Seleccionar" ) 
-					{
-						JOptionPane.showMessageDialog(null,"Debe agregar un microprocesador");
-					}
-				
-					else {	
-						selected1 = Tienda.getInstance().buscarcomponente(ComboTarjetaMadre.getSelectedItem().toString());
-						carrito.add(selected1);
-						selected1 = Tienda.getInstance().buscarcomponente(ComboDisco.getSelectedItem().toString());
-						carrito.add(selected1);
-						selected1 = Tienda.getInstance().buscarcomponente(ComboRam.getSelectedItem().toString());
-						carrito.add(selected1);
-						selected1 = Tienda.getInstance().buscarcomponente(ComboMircroprocesador.getSelectedItem().toString());
-						carrito.add(selected1);
-						String q = textFieldCodigo.getText();
-						String g = textFieldCombroNombre.getText();
-				        int s = Integer.valueOf(spinnerDescuento.getValue().toString());
-						Combos a = new Combos(q,g,s,carrito); 
-						
-					}
+						if(validarCampos()) 
+						{
+							llenarcombo();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -255,7 +214,68 @@ public class CrearCombo extends JDialog {
 		}
 		loadComponente();
 	}
+	protected void llenarcombo() {
+		selected1 = Tienda.getInstance().buscarcomponente(ComboTarjetaMadre.getSelectedItem().toString());
+		carrito.add(selected1);
+		selected1 = Tienda.getInstance().buscarcomponente(ComboDisco.getSelectedItem().toString());
+		carrito.add(selected1);
+		selected1 = Tienda.getInstance().buscarcomponente(ComboRam.getSelectedItem().toString());
+		carrito.add(selected1);
+		selected1 = Tienda.getInstance().buscarcomponente(ComboMircroprocesador.getSelectedItem().toString());
+		carrito.add(selected1);
+		String q = textFieldCodigo.getText();
+		String g = textFieldCombroNombre.getText();
+        int s = Integer.valueOf(spinnerDescuento.getValue().toString());
+		Combos a = new Combos(q,g,s,carrito); 
+		
+	}
 
+	public boolean validarCampos() {
+		boolean aux = true;
+		String a = textFieldCombroNombre.getText();
+		String s = textFieldCodigo.getText();
+		String f = ComboDisco.getSelectedItem().toString();
+        String g = ComboRam.getSelectedItem().toString();
+        String b = ComboTarjetaMadre.getSelectedItem().toString();
+        String h = ComboMircroprocesador.getSelectedItem().toString();
+		
+        if(a.equalsIgnoreCase("")) 
+        {
+        	JOptionPane.showMessageDialog(null,"Debe Registrar un nombre");
+        	aux = false;
+        }
+        if(s.equals(""))
+        {
+        	JOptionPane.showMessageDialog(null,"Debe Registrar un codigo");
+        	aux = false;
+        }
+        if(f.equals(""))
+        {
+        	JOptionPane.showMessageDialog(null,"Debe agregar un disco duro");
+        	aux = false;
+        }
+        if(g.equalsIgnoreCase("                                         Seleccionar")) 
+        {
+        	JOptionPane.showMessageDialog(null,"Debe agregar una Memoria Ram");
+        	aux = false;
+        }
+        if(b.equalsIgnoreCase("                                         Seleccionar"))
+        	{
+        	JOptionPane.showMessageDialog(null,"Debe agregar una tarjeta madre");
+        	aux = false;
+        	}
+        if(h.equalsIgnoreCase("                                         Seleccionar")) 
+        {
+        	JOptionPane.showMessageDialog(null,"Debe agregar un microprocesador");
+        	aux = false;
+        }
+        if(Float.valueOf(spinnerDescuento.getValue().toString()) == 0)
+        {
+        	JOptionPane.showMessageDialog(null,"Debe aplicar un descuento");
+ 	    }
+		return aux;
+	}
+	
 	public void loadComponente() {
 		 ArrayList<Componente> compo = Tienda.getInstance().getMiscomponentes();
 		 for (Componente compi : compo) {
