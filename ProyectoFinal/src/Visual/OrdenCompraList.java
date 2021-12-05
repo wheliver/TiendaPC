@@ -64,22 +64,16 @@ public class OrdenCompraList extends JDialog {
 		String [] headers = {"Codigo","Fecha","Tipo pago","Cantidad disponible","Estado"};
 		model.setColumnIdentifiers(headers);
 		
-		 for (OrdenCompra pu : Tienda.getInstance().getMis_orden()){
-			 row[0]=pu.getCodigo();
-			    row[1]=pu.getFecha();
-			    row[2] =pu.getTipodepago();
-			    row[3] = pu.getCompo().getCantidadDisponible();
-				row[4] =pu.getEstado();
-				model.addRow(row);
-			 
-		 }
+		
 		{
 			scrollPane = new JScrollPane();
 			scrollPane.setBounds(10, 11, 983, 552);
 			contentPanel.add(scrollPane);
 			{
 				table = new JTable();
+				table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				scrollPane.setViewportView(table);
+				table.setModel(model);
 			}
 		}
 		{
@@ -152,6 +146,20 @@ public class OrdenCompraList extends JDialog {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 		table.setModel(model);
+		loadtable();
+	}
+	public void loadtable(){
+		model.setRowCount(0);
+		 row = new Object[(model.getColumnCount())];
+		 for (OrdenCompra pu : Tienda.getInstance().getMis_orden()){
+			 row[0]=pu.getCodigo();
+			    row[1]=pu.getFecha();
+			    row[2] =pu.getTipodepago();
+			    row[3] = pu.getCompo().getCantidadDisponible();
+				row[4] =pu.getEstado();
+				model.addRow(row);
+			 
+		 }
 	}
 	}
 

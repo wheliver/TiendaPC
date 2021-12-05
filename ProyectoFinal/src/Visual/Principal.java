@@ -21,6 +21,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JDialog;
 
 public class Principal extends JFrame {
 
@@ -92,6 +93,7 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrdenCompraList ol = new OrdenCompraList();
+				ol.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				ol.setVisible(true);
 			}
 		});
