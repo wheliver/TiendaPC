@@ -183,7 +183,7 @@ public class RegistroCliente extends JDialog {
 						
 						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
 						
-						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getSelectedText(),textField_Cedula.getText());
+						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getText(),textField_Cedula.getText());
 						Tienda.getInstance().insertarCliente(a);
 						Tienda.getInstance().guardarTienda();
 						 JOptionPane.showMessageDialog(null,"Registro Satisfactorio","Informacion",JOptionPane.INFORMATION_MESSAGE);
