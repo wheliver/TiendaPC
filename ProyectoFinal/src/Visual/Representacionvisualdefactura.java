@@ -100,7 +100,7 @@ public class Representacionvisualdefactura extends JDialog {
 		contentPanel.add(cliente);
 		
 		vendedor = new JLabel("");
-		vendedor.setBounds(76, 119, 286, 14);
+		vendedor.setBounds(86, 119, 276, 14);
 		contentPanel.add(vendedor);
 		
 		tipodepago = new JLabel("");
