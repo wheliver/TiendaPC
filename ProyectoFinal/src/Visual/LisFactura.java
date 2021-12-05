@@ -70,6 +70,11 @@ public class LisFactura extends JDialog {
 		panel_1.setLayout(null);
 		
 		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnSalir.setBounds(620, 11, 89, 23);
 		panel_1.add(btnSalir);
 		
