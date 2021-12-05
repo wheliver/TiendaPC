@@ -72,15 +72,6 @@ public class ListaComponentes extends JDialog {
 		model = new DefaultTableModel();
 		String [] headers = {"Nombre","Precio","Cantidad disponible","Proveedor","Tipo Componente"};
 		model.setColumnIdentifiers(headers);
-	row = new Object[model.getColumnCount()];
-		for (Componente pu : Tienda.getInstance().getMiscomponentes()){
-			 row[0]=pu.getNombre();
-			    row[1]=pu.getPrecio();
-			    row[2] =pu.getCantidadDisponible();
-			   row[3] = pu.getProveedor().getNombre();
-				model.addRow(row);
-			 
-		 }
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 85, 727, 407);
@@ -162,6 +153,7 @@ public class ListaComponentes extends JDialog {
 		JLabel lblNewLabel = new JLabel("Tipo de componentes");
 		lblNewLabel.setBounds(54, 11, 150, 14);
 		panel_1.add(lblNewLabel);
+		loadTable(0);
 	}
 	public void loadTable(int opcion) {
 		model.setRowCount(0);
