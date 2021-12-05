@@ -40,6 +40,8 @@ import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class componenteNuevo extends JDialog {
 
@@ -424,6 +426,11 @@ public class componenteNuevo extends JDialog {
 		contentPanel.add(panel_1);
 		
 		provedorr = new JComboBox();
+		provedorr.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				loadComponente();
+			}
+		});
 		provedorr.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -438,6 +445,7 @@ public class componenteNuevo extends JDialog {
 					bprovedor.setVisible(false);
 							
 				}else {
+					loadComponente();
 					bprovedor.setEnabled(true);
 					bprovedor.setVisible(true);
 				}
@@ -597,13 +605,17 @@ public class componenteNuevo extends JDialog {
 			 
 		 ArrayList<Proveedor> compo = Tienda.getInstance().getMisproveedores();
 				 for (Proveedor provedor : compo) {
+					 Boolean eco = false;
 					 for (int i = 0; i <provedorr.getItemCount(); i++) {
 						
 						 if(provedorr.getItemAt(i).toString().equalsIgnoreCase(provedor.getNombre())) {
-						 }else {
-							 provedorr.addItem(provedor.getNombre()); 
+							 eco=true;
+						 }
 					 }
-					}
+						 if(eco==false) {
+							 provedorr.addItem(provedor.getNombre()); }
+						 				 
+					
 					 } 
 				 	}
 }

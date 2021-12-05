@@ -105,6 +105,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Lista Clientes");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ListaCliente lcc = new ListaCliente();
+				lcc.setVisible(true);
 				
 			}
 		});
