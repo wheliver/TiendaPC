@@ -23,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Color;
 
 public class ListaCliente extends JDialog {
 
@@ -53,9 +54,10 @@ public class ListaCliente extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaCliente() {
-		setTitle("Registrar Cliente");
+		setTitle("Listado de clientes\r\n");
 		setBounds(100, 100, 671, 657);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -100,6 +102,7 @@ public class ListaCliente extends JDialog {
 		scrollPane.setViewportView(table);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);

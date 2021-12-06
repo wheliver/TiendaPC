@@ -23,6 +23,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
+import java.awt.Color;
 
 public class OrdenCompraList extends JDialog {
 
@@ -58,6 +59,7 @@ public class OrdenCompraList extends JDialog {
 		setTitle("Lista Orden Compra");
 		setBounds(100, 100, 1019, 646);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -68,6 +70,7 @@ public class OrdenCompraList extends JDialog {
 		
 		{
 			scrollPane = new JScrollPane();
+			scrollPane.setBackground(Color.WHITE);
 			scrollPane.setBounds(10, 11, 983, 552);
 			contentPanel.add(scrollPane);
 			{
@@ -79,6 +82,7 @@ public class OrdenCompraList extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
