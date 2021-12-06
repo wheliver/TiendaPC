@@ -107,6 +107,7 @@ public class OrdenCompraList extends JDialog {
 						{
 							btnEstado.setEnabled(false);
 						}
+						loadtable();
 					}
 				});
 				btnEstado.setActionCommand("OK");
@@ -147,6 +148,7 @@ public class OrdenCompraList extends JDialog {
 							btnEstado.setEnabled(true);
 						}
 				}
+					loadtable();
 				}
 				});
 			
