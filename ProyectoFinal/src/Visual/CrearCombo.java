@@ -227,6 +227,7 @@ public class CrearCombo extends JDialog {
 		String g = textFieldCombroNombre.getText();
         int s = Integer.valueOf(spinnerDescuento.getValue().toString());
 		Combos a = new Combos(q,g,s,carrito); 
+		Tienda.getInstance().insetarCombo(a);
 		
 	}
 
@@ -271,6 +272,7 @@ public class CrearCombo extends JDialog {
         }
         if(Float.valueOf(spinnerDescuento.getValue().toString()) == 0)
         {
+        	aux = false;
         	JOptionPane.showMessageDialog(null,"Debe aplicar un descuento");
  	    }
 		return aux;

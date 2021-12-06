@@ -223,9 +223,18 @@ public Componente buscarcomponente(String codigo) {
 }
 
 public Combos buscarcombo(String string) {
-	// TODO Auto-generated method stub
-	return null;
-}
+	Combos aux = null;
+	boolean encontrado = false;
+	int indexBuscador=0;
+	
+	while (!encontrado && indexBuscador<miscombos.size()) {
+		if(miscombos.get(indexBuscador).getNombre().equalsIgnoreCase(string)) {
+			aux = miscombos.get(indexBuscador);
+			encontrado = true;				
+		}
+		indexBuscador++;
+	}
+	return aux;}
 public void insertarCliente(Cliente a) {
 	misclientes.add(a);
 	cantClientesReal= cantClientesReal+1;
@@ -247,10 +256,7 @@ public Proveedor buscarProveedor(String rnc) {
 public void insertarProveedor(Proveedor a) {
 	misproveedores.add(a);
 }
-public String tipoComponente(Componente componente) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 public boolean confirmLogin(String text, String text2) {
 	boolean login = false;
 	for (Usuario user : misusuarios) {
@@ -294,6 +300,10 @@ public OrdenCompra buscarOrdendecompra(String valueAt) {
 		indexBuscador++;
 	}
 	return aux;
+}
+public void insetarCombo(Combos a) {
+	miscombos.add(a);
+	
 }
 
 };
