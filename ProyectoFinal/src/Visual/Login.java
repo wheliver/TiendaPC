@@ -16,14 +16,24 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.DropMode;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_User;
+	private JTextField txtIngreseUnNombre;
 	private JTextField textField_Password;
 	private JButton btnCreateUser;
 	private JButton btnLogin;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblInicioSesion;
 
 	/**
 	 * Launch the application.
@@ -47,38 +57,51 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 413, 362);
+		setBounds(100, 100, 587, 524);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("User");
-		lblNewLabel.setBounds(177, 31, 46, 14);
+		JLabel lblNewLabel = new JLabel("Usuario");
+		lblNewLabel.setFont(new Font("Palatino Linotype", Font.BOLD, 20));
+		lblNewLabel.setBounds(27, 131, 169, 20);
 		panel.add(lblNewLabel);
 		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(163, 121, 85, 14);
+		JLabel lblPassword = new JLabel("Contrase\u00F1a");
+		lblPassword.setFont(new Font("Palatino Linotype", Font.BOLD, 20));
+		lblPassword.setBounds(27, 234, 169, 20);
 		panel.add(lblPassword);
 		
-		textField_User = new JTextField();
-		textField_User.setBounds(79, 56, 235, 20);
-		panel.add(textField_User);
-		textField_User.setColumns(10);
+		txtIngreseUnNombre = new JTextField();
+		txtIngreseUnNombre.setToolTipText("Ingrese un nombre usuario");
+		txtIngreseUnNombre.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		txtIngreseUnNombre.setForeground(Color.GRAY);
+		txtIngreseUnNombre.setBorder(null);
+		txtIngreseUnNombre.setBounds(27, 162, 179, 20);
+		panel.add(txtIngreseUnNombre);
+		txtIngreseUnNombre.setColumns(10);
 		
 		textField_Password = new JTextField();
+		textField_Password.setToolTipText("Ingrese la contrase\u00F1a");
+		textField_Password.setBorder(null);
 		textField_Password.setColumns(10);
-		textField_Password.setBounds(79, 149, 235, 20);
+		textField_Password.setBounds(27, 265, 179, 20);
 		panel.add(textField_Password);
 		
 		btnLogin = new JButton("Log in");
+		btnLogin.setFont(new Font("Teko SemiBold", Font.BOLD, 14));
+		btnLogin.setForeground(SystemColor.textHighlightText);
+		btnLogin.setBackground(SystemColor.textHighlight);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String u = textField_User.getText();
+				String u = txtIngreseUnNombre.getText();
 				String o = textField_Password.getText();
 				if(Tienda.getInstance().confirmLogin(u,o)){
 					
@@ -93,17 +116,45 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		btnLogin.setBounds(149, 203, 113, 23);
+		btnLogin.setBounds(50, 318, 142, 29);
 		panel.add(btnLogin);
 		
 		btnCreateUser = new JButton("Create user");
+		btnCreateUser.setForeground(SystemColor.window);
+		btnCreateUser.setBackground(SystemColor.textHighlight);
+		btnCreateUser.setFont(new Font("Teko SemiBold", Font.BOLD, 14));
 		btnCreateUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearUser c = new CrearUser();
 				c.setVisible(true);
 			}
 		});
-		btnCreateUser.setBounds(149, 254, 113, 23);
+		btnCreateUser.setBounds(50, 373, 142, 29);
 		panel.add(btnCreateUser);
+		
+		separator = new JSeparator();
+		separator.setBackground(Color.BLACK);
+		separator.setBounds(27, 191, 169, 2);
+		panel.add(separator);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBackground(Color.BLACK);
+		separator_1.setBounds(27, 288, 169, 2);
+		panel.add(separator_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/Images/pexels-lucie-liz-3165335 (1).jpg")));
+		lblNewLabel_1.setBounds(271, 0, 290, 475);
+		panel.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/Images/pc-de-la-torre (2).png")));
+		lblNewLabel_2.setBounds(162, 11, 85, 82);
+		panel.add(lblNewLabel_2);
+		
+		lblInicioSesion = new JLabel("Inicio Sesion");
+		lblInicioSesion.setFont(new Font("Palatino Linotype", Font.BOLD, 20));
+		lblInicioSesion.setBounds(10, 48, 142, 20);
+		panel.add(lblInicioSesion);
 	}
 }
