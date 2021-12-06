@@ -41,6 +41,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class Ventas extends JDialog {
 
@@ -73,6 +75,8 @@ public class Ventas extends JDialog {
 	private ArrayList<auxiliarCarrito> carrito1 = new ArrayList<auxiliarCarrito>();
 	private ArrayList<auxiliarCarito2> carrito2 = new ArrayList<auxiliarCarito2>();
 	private  Usuario user=null;
+	private JButton cancelButton;
+	private JButton GuardarCombobutton;
 
 	/**
 	 * Launch the application.
@@ -94,17 +98,20 @@ public class Ventas extends JDialog {
 		setTitle("Venta Combos");
 		setBounds(100, 100, 803, 458);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(new TitledBorder(null, "Eleccion de componentes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 767, 359);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBorder(null);
 		panel_2.setBounds(346, 25, 400, 312);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -269,6 +276,7 @@ public class Ventas extends JDialog {
 		agregar.setVisible(false);
 		
 		indentificador = new JLabel("");
+		indentificador.setBackground(Color.WHITE);
 		indentificador.setEnabled(false);
 		indentificador.setBounds(208, 278, 183, 23);
 		panel_2.add(indentificador);
@@ -441,28 +449,38 @@ public class Ventas extends JDialog {
 		panel.add(comboprocesador);
 		
 		JLabel lblNewLabel = new JLabel("Combos");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		lblNewLabel.setBounds(68, 50, 67, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblTarjetaMadre = new JLabel("Tarjeta madre");
+		lblTarjetaMadre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTarjetaMadre.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		lblTarjetaMadre.setBounds(68, 106, 89, 14);
 		panel.add(lblTarjetaMadre);
 		
 		JLabel lblDiscoDuro = new JLabel("Disco duro");
+		lblDiscoDuro.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblDiscoDuro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDiscoDuro.setBounds(68, 164, 67, 14);
 		panel.add(lblDiscoDuro);
 		
 		JLabel lblMemoriaRam = new JLabel("Memoria Ram");
-		lblMemoriaRam.setBounds(68, 218, 79, 14);
+		lblMemoriaRam.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMemoriaRam.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblMemoriaRam.setBounds(56, 220, 101, 14);
 		panel.add(lblMemoriaRam);
 		
 		JLabel lblMicroprocesador = new JLabel("Microprocesador");
-		lblMicroprocesador.setBounds(68, 274, 101, 14);
+		lblMicroprocesador.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblMicroprocesador.setBounds(56, 274, 120, 14);
 		panel.add(lblMicroprocesador);
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(334, 11, 423, 337);
 		panel.add(panel_1);
-		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(null);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Precio:");
@@ -551,11 +569,12 @@ public class Ventas extends JDialog {
 		panel.add(spnprocesador);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
-			JButton GuardarCombobutton = new JButton("Guardar Combo");
+			GuardarCombobutton = new JButton("Guardar Combo");
 			GuardarCombobutton.setActionCommand("OK");
 			buttonPane.add(GuardarCombobutton);
 			{
@@ -575,7 +594,7 @@ public class Ventas extends JDialog {
 				getRootPane().setDefaultButton(RegistrarButton);
 			}
 			{
-				JButton cancelButton = new JButton("Salir");
+				cancelButton = new JButton("Salir");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

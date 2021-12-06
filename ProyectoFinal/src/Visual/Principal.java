@@ -28,11 +28,16 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private  Usuario user=null;
+	private JLabel LblX;
+	private JPanel panelHover;
 
 	/**
 	 * Launch the application.
@@ -170,21 +175,39 @@ public class Principal extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBorder(null);
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		panelHover = new JPanel();
+		panelHover.setBackground(Color.WHITE);
+		panelHover.setBounds(514, 345, 82, 50);
+		contentPane.add(panelHover);
+		panelHover.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("X");
-		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 36));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(526, 368, 95, 45);
-		panel.add(lblNewLabel);
+		LblX = new JLabel("X");
+		LblX.setBounds(0, 0, 82, 50);
+		panelHover.add(LblX);
+		LblX.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				panelHover.setBackground(Color.red);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				panelHover.setBackground(Color.white);
+			}
+		});
+		LblX.setHorizontalAlignment(SwingConstants.CENTER);
+		LblX.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 15));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/Images/monitor-de-pc.png")));
+		lblNewLabel.setBounds(241, 84, 153, 168);
+		contentPane.add(lblNewLabel);
 	}
 
 	public void setusuario(Usuario dameloger) {

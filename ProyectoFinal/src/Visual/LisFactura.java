@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import logico.Factura;
 import logico.Cliente;
 import logico.Tienda;
+import java.awt.Color;
 
 public class LisFactura extends JDialog {
 
@@ -53,9 +54,11 @@ public class LisFactura extends JDialog {
 	 * Create the dialog.
 	 */
 	public LisFactura() {
+		getContentPane().setBackground(Color.WHITE);
 		setTitle("Listado de facturas");
 		setBounds(100, 100, 755, 585);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -64,6 +67,7 @@ public class LisFactura extends JDialog {
 		model.setColumnIdentifiers(headers);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 495, 719, 40);
 		contentPanel.add(panel_1);
@@ -123,6 +127,7 @@ public class LisFactura extends JDialog {
 		panel_1.add(btnCambiarEstado);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
 		panel_2.setBorder(new TitledBorder(null, "Introduzca la cedula del cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(10, 11, 719, 43);
 		contentPanel.add(panel_2);
