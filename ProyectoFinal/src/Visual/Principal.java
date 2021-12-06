@@ -23,6 +23,11 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDialog;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class Principal extends JFrame {
 
@@ -49,6 +54,8 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension j = getToolkit().getScreenSize();
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) 
@@ -58,13 +65,13 @@ public class Principal extends JFrame {
 		});
 		
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 637, 473);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Vender");
+		mnNewMenu.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Venta");
@@ -80,6 +87,7 @@ public class Principal extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenu mnNewMenu_3 = new JMenu("Facturas");
+		mnNewMenu_3.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		menuBar.add(mnNewMenu_3);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Lista facturas");
@@ -102,6 +110,7 @@ public class Principal extends JFrame {
 		mnNewMenu_3.add(mntmNewMenuItem_1);
 		
 		JMenu mnNewMenu_1 = new JMenu("Clientes");
+		mnNewMenu_1.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Lista Clientes");
@@ -115,6 +124,7 @@ public class Principal extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
 		JMenu mnNewMenu_2 = new JMenu("Componentes");
+		mnNewMenu_2.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Lista de componentes");
@@ -145,6 +155,7 @@ public class Principal extends JFrame {
 		mnNewMenu_2.add(mntmNewMenuItem_7);
 		
 		JMenu mnNewMenu_4 = new JMenu("Usuarios ");
+		mnNewMenu_4.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		menuBar.add(mnNewMenu_4);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Introducir un nuevo vendedor");
@@ -157,14 +168,23 @@ public class Principal extends JFrame {
 			}
 		});
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(null);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("X");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 36));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(526, 368, 95, 45);
+		panel.add(lblNewLabel);
 	}
 
 	public void setusuario(Usuario dameloger) {
