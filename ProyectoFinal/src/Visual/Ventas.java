@@ -166,7 +166,10 @@ public class Ventas extends JDialog {
 								 }
 					 }
 								}
+				
 				aux=false;
+				b.setCantidad(0);
+				b.setCarrito(null);
 				if( Integer.valueOf(spntargeta.getValue().toString())>0) {
 					 c = Tienda.getInstance().buscarcomponente(combotargeta.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
@@ -197,6 +200,8 @@ public class Ventas extends JDialog {
 					 }
 				}
 				aux=false;
+				b.setCantidad(0);
+				b.setCarrito(null);
 				if( Integer.valueOf(spnram.getValue().toString())>0) {
 					 c = Tienda.getInstance().buscarcomponente(comboram.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
@@ -226,6 +231,8 @@ public class Ventas extends JDialog {
 					 }
 				}
 				aux=false;
+				b.setCantidad(0);
+				b.setCarrito(null);
 				if( Integer.valueOf(spnprocesador.getValue().toString())>0) {
 					 c = Tienda.getInstance().buscarcomponente(comboprocesador.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
@@ -349,6 +356,8 @@ public class Ventas extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(combo.getSelectedItem().toString() !="                        Seleccionar") {
 					spncombo.setEnabled(true);
+					spncombo.setValue(0);
+					
 					Combos c = Tienda.getInstance().buscarcombo(combo.getSelectedItem().toString());				
 					PrecioCombo.setText(String.valueOf(c.getPrecio()));
 					
@@ -369,6 +378,7 @@ public class Ventas extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(combotargeta.getSelectedItem().toString() !="                        Seleccionar") {
 					spntargeta.setEnabled(true);
+					spntargeta.setValue(0);
 					Componente c = Tienda.getInstance().buscarcomponente(combotargeta.getSelectedItem().toString());				
 					PrecioTargeta.setText(String.valueOf(c.getPrecio()));
 					agregar.setEnabled(true);
@@ -388,6 +398,7 @@ public class Ventas extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(combodisco.getSelectedItem().toString() !="                        Seleccionar") {
 					spndisco.setEnabled(true);
+					spndisco.setValue(0);
 					Componente c = Tienda.getInstance().buscarcomponente(combodisco.getSelectedItem().toString());				
 					PrecioDisco.setText(String.valueOf(c.getPrecio()));
 					agregar.setEnabled(true);
@@ -407,6 +418,7 @@ public class Ventas extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(comboram.getSelectedItem().toString() !="                        Seleccionar") {
 					spnram.setEnabled(true);
+					spnram.setValue(0);
 					Componente c = Tienda.getInstance().buscarcomponente(comboram.getSelectedItem().toString());				
 					PrecioRam.setText(String.valueOf(c.getPrecio()));
 					agregar.setEnabled(true);
@@ -426,6 +438,7 @@ public class Ventas extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(comboprocesador.getSelectedItem().toString() !="                        Seleccionar") {
 					spnprocesador.setEnabled(true);
+					spnprocesador.setValue(0);
 					Componente c = Tienda.getInstance().buscarcomponente(comboprocesador.getSelectedItem().toString());				
 					PrecioProcesador.setText(String.valueOf(c.getPrecio()));
 					agregar.setEnabled(true);
