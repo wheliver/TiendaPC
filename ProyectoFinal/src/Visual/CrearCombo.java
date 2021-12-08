@@ -46,7 +46,7 @@ public class CrearCombo extends JDialog {
 	private JSpinner spinnerDescuento;
 	private JButton okButton;
 	private Componente selected1 = null;
-	private ArrayList<Componente> carrito;
+	private ArrayList<Componente> carrito = new ArrayList<Componente>() ;
 	private JComboBox ComboMircroprocesador;
 	private JTextField textFieldCodigo;
 	private JButton btnLimpiar;
@@ -101,7 +101,7 @@ public class CrearCombo extends JDialog {
 		panel.add(lblNewLabel_1);
 		
 		spinnerDescuento = new JSpinner();
-		spinnerDescuento.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(50), new Float(1)));
+		spinnerDescuento.setModel(new SpinnerNumberModel(0, 0, 50, 1));
 		spinnerDescuento.setBounds(135, 33, 60, 20);
 		panel.add(spinnerDescuento);
 		
@@ -268,7 +268,8 @@ public class CrearCombo extends JDialog {
 		carrito.add(c);
 		String q = textFieldCodigo.getText();
 		String g = textFieldCombroNombre.getText();
-        int s = Integer.valueOf(spinnerDescuento.getValue().toString());
+        int s =Integer.valueOf(spinnerDescuento.getValue().toString());
+        //
 		Combos a = new Combos(q,g,s,carrito); 
 		Tienda.getInstance().insetarCombo(a);
 		
