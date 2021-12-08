@@ -257,14 +257,15 @@ public class CrearCombo extends JDialog {
 		loadComponente();
 	}
 	protected void llenarcombo() {
-		selected1 = Tienda.getInstance().buscarcomponente(ComboTarjetaMadre.getSelectedItem().toString());
-		carrito.add(selected1);
-		selected1 = Tienda.getInstance().buscarcomponente(ComboDisco.getSelectedItem().toString());
-		carrito.add(selected1);
-		selected1 = Tienda.getInstance().buscarcomponente(ComboRam.getSelectedItem().toString());
-		carrito.add(selected1);
-		selected1 = Tienda.getInstance().buscarcomponente(ComboMircroprocesador.getSelectedItem().toString());
-		carrito.add(selected1);
+		Componente a1=null,b=null,c=null,d=null;
+		d = Tienda.getInstance().buscarcomponente(ComboTarjetaMadre.getSelectedItem().toString());
+		carrito.add(d);
+		a1 = Tienda.getInstance().buscarcomponente(ComboDisco.getSelectedItem().toString());
+		carrito.add(a1);
+		b = Tienda.getInstance().buscarcomponente(ComboRam.getSelectedItem().toString());
+		carrito.add(b);
+		c = Tienda.getInstance().buscarcomponente(ComboMircroprocesador.getSelectedItem().toString());
+		carrito.add(c);
 		String q = textFieldCodigo.getText();
 		String g = textFieldCombroNombre.getText();
         int s = Integer.valueOf(spinnerDescuento.getValue().toString());
