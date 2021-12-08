@@ -109,7 +109,9 @@ public class Login extends JFrame {
 					
 					Principal frame = new Principal();
 					frame.setusuario(Tienda.getInstance().dameloger(u,o));
-						frame.setVisible(true);
+					frame.chequeodeentrada();
+					frame.setVisible(true);
+						
 					dispose();
 				}
 				else
