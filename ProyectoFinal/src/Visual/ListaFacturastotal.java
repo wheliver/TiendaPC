@@ -47,7 +47,8 @@ public class ListaFacturastotal extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 */  
+	/**
 	public static void main(String[] args) {
 		
 		try {
@@ -60,7 +61,7 @@ public class ListaFacturastotal extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+**/
 	/**
 	 * Create the dialog.
 	 */

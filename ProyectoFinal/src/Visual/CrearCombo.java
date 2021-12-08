@@ -26,6 +26,15 @@ import logico.Microprocesador;
 import logico.TarjetaMadre;
 import logico.Tienda;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.ImageIcon;
 
 public class CrearCombo extends JDialog {
 
@@ -41,10 +50,12 @@ public class CrearCombo extends JDialog {
 	private JComboBox ComboMircroprocesador;
 	private JTextField textFieldCodigo;
 	private JButton btnLimpiar;
+	private JPanel panel;
 
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		try {
 			CrearCombo dialog = new CrearCombo();
@@ -62,17 +73,20 @@ public class CrearCombo extends JDialog {
 		setTitle("Creacion de un combo\r\n");
 		setBounds(100, 100, 460, 401);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(null);
 		panel.setBounds(10, 11, 424, 62);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre del Combo");
+		lblNewLabel.setFont(new Font("Yu Gothic", Font.BOLD, 12));
 		lblNewLabel.setBounds(10, 11, 125, 14);
 		panel.add(lblNewLabel);
 		
@@ -82,6 +96,7 @@ public class CrearCombo extends JDialog {
 		textFieldCombroNombre.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Descuento Aplicado");
+		lblNewLabel_1.setFont(new Font("Yu Gothic", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(10, 36, 125, 15);
 		panel.add(lblNewLabel_1);
 		
@@ -91,7 +106,8 @@ public class CrearCombo extends JDialog {
 		panel.add(spinnerDescuento);
 		
 		JLabel lblNewLabel_3 = new JLabel("Codigo");
-		lblNewLabel_3.setBounds(226, 36, 46, 14);
+		lblNewLabel_3.setFont(new Font("Yu Gothic", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(226, 36, 60, 14);
 		panel.add(lblNewLabel_3);
 		
 		textFieldCodigo = new JTextField();
@@ -100,7 +116,8 @@ public class CrearCombo extends JDialog {
 		textFieldCodigo.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(null);
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(10, 84, 424, 234);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
@@ -156,22 +173,47 @@ public class CrearCombo extends JDialog {
 		panel_1.add(ComboMircroprocesador);
 		
 		JLabel lblNewLabel_2 = new JLabel("Tarjeta Madre");
-		lblNewLabel_2.setBounds(190, 11, 114, 14);
+		lblNewLabel_2.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(179, 11, 114, 14);
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblDiscoDuro = new JLabel("Disco Duro");
-		lblDiscoDuro.setBounds(190, 58, 78, 14);
+		lblDiscoDuro.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 16));
+		lblDiscoDuro.setBounds(182, 58, 78, 14);
 		panel_1.add(lblDiscoDuro);
 		
 		JLabel lblMemoriaRam = new JLabel("Memoria Ram");
-		lblMemoriaRam.setBounds(190, 114, 103, 14);
+		lblMemoriaRam.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 16));
+		lblMemoriaRam.setBounds(179, 114, 103, 14);
 		panel_1.add(lblMemoriaRam);
 		
-		JLabel lblMircroprocesador = new JLabel("Mircroprocesador");
-		lblMircroprocesador.setBounds(190, 170, 103, 14);
+		JLabel lblMircroprocesador = new JLabel("Microprocesador");
+		lblMircroprocesador.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 16));
+		lblMircroprocesador.setBounds(179, 166, 114, 14);
 		panel_1.add(lblMircroprocesador);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(CrearCombo.class.getResource("/Images/motherboard (1).png")));
+		lblNewLabel_4.setBounds(276, 11, 31, 21);
+		panel_1.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(CrearCombo.class.getResource("/Images/hard-drive.png")));
+		lblNewLabel_5.setBounds(276, 58, 31, 24);
+		panel_1.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(CrearCombo.class.getResource("/Images/ram.png")));
+		lblNewLabel_6.setBounds(276, 108, 46, 20);
+		panel_1.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setIcon(new ImageIcon(CrearCombo.class.getResource("/Images/microprocesador.png")));
+		lblNewLabel_7.setBounds(289, 166, 46, 21);
+		panel_1.add(lblNewLabel_7);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -229,6 +271,7 @@ public class CrearCombo extends JDialog {
 		Combos a = new Combos(q,g,s,carrito); 
 		Tienda.getInstance().insetarCombo(a);
 		
+		JOptionPane.showMessageDialog(null,"Registro satisfecho");
 	}
 
 	public boolean validarCampos() {

@@ -305,5 +305,8 @@ public void insetarCombo(Combos a) {
 	miscombos.add(a);
 	
 }
+public void modificarcliente(Cliente cli) {
+	Cliente index = buscarCliente(cli.getCedula());
+}
 
 };

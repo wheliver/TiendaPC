@@ -39,10 +39,10 @@ public class Login extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Tienda.getInstance().cargarTienda();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Tienda.getInstance().cargarTienda();
 					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -89,6 +89,8 @@ public class Login extends JFrame {
 		txtIngreseUnNombre.setColumns(10);
 		
 		textField_Password = new JTextField();
+		textField_Password.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		textField_Password.setForeground(Color.GRAY);
 		textField_Password.setToolTipText("Ingrese la contrase\u00F1a");
 		textField_Password.setBorder(null);
 		textField_Password.setColumns(10);
@@ -113,6 +115,8 @@ public class Login extends JFrame {
 				else
 				{
 					 JOptionPane.showMessageDialog(null,"Este usuario no existe","Aviso",JOptionPane.INFORMATION_MESSAGE);
+					 txtIngreseUnNombre.setText("");
+					 textField_Password.setText("");
 				}
 			}
 		});

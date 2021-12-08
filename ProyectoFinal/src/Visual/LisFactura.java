@@ -39,7 +39,7 @@ public class LisFactura extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//**
 	public static void main(String[] args) {
 		try {
 			LisFactura dialog = new LisFactura();

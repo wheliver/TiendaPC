@@ -20,6 +20,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDialog;
@@ -41,7 +49,7 @@ public class Principal extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//**
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -63,6 +71,7 @@ public class Principal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension j = getToolkit().getScreenSize();
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) 
 			{
 				Tienda.getInstance().guardarTienda();
@@ -165,6 +174,50 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Introducir un nuevo vendedor");
 		mnNewMenu_4.add(mntmNewMenuItem_6);
+		
+		JMenu mnNewMenu_5 = new JMenu("Respaldo");
+		menuBar.add(mnNewMenu_5);
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Hacer Respaldo");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Socket socket = null;
+				InputStream in = null;
+				OutputStream out = null;
+
+				try {
+					socket = new Socket("127.0.0.1",8906);
+					in = new FileInputStream("Tienda.dat");
+					out = socket.getOutputStream();
+				} catch (FileNotFoundException err) {
+					JOptionPane.showMessageDialog(null, "No existe data para realizar un respaldo", "Respaldo Fallido",
+							JOptionPane.ERROR_MESSAGE);
+				} catch (UnknownHostException uhe) {
+					JOptionPane.showMessageDialog(null, "No existe data para realizar un respaldo", "Respaldo Fallido",
+							JOptionPane.ERROR_MESSAGE);
+				} catch (IOException ioe) {
+					ioe.printStackTrace();
+				}
+
+				try {
+					int count;
+					byte[] bytes = new byte[8192];
+					while ((count = in.read(bytes)) > 0) {
+						out.write(bytes, 0, count);
+					}
+
+					out.close();
+					in.close();
+					socket.close();
+
+					JOptionPane.showMessageDialog(null, "Respaldo guardado en la carpeta", "Respaldo hecho",
+							JOptionPane.INFORMATION_MESSAGE);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		mnNewMenu_5.add(mntmNewMenuItem_8);
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearUser cu = new CrearUser();

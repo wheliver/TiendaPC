@@ -37,7 +37,7 @@ public class RegistroProvedor extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//**
 	public static void main(String[] args) {
 		try {
 			RegistroProvedor dialog = new RegistroProvedor();

@@ -81,6 +81,7 @@ public class Ventas extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	/**
 	public static void main(String[] args) {
 		try {
 			Ventas dialog = new Ventas();
@@ -90,7 +91,7 @@ public class Ventas extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+**/
 	/**
 	 * Create the dialog.
 	 */
@@ -351,7 +352,7 @@ public class Ventas extends JDialog {
 						carrito2.remove(b);
 						}
 					 }}
-				 loadTable();
+				// loadTable();
 			}
 		});
 		quitar.setEnabled(false);

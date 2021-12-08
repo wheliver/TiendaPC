@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
 import logico.Cliente;
 import logico.Componente;
 import logico.Tienda;
@@ -24,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class ListaCliente extends JDialog {
 
@@ -35,10 +37,11 @@ public class ListaCliente extends JDialog {
 	private JButton btnModificar;
 	private Cliente selected = null;
 	private JButton cancelButton;
+	private JButton btnAgregarCliente;
 
 	/**
 	 * Launch the application.
-	 */
+	 *//**
 	public static void main(String[] args) {
 		try {
 			Tienda.getInstance().cargarTienda();
@@ -111,12 +114,30 @@ public class ListaCliente extends JDialog {
 				btnModificar.setEnabled(false);
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(selected!=null){
-							RegistroCliente cq = new RegistroCliente();
-							cq.setVisible(true);
+						
+							ModificarCliente reg = new ModificarCliente();
+							reg.setVisible(true);
 						}
+				});
+				
+				btnAgregarCliente = new JButton("Agregar Cliente");
+				btnAgregarCliente.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RegistroCliente reg = new RegistroCliente();
+						reg.setVisible(true);
 					}
 				});
+				
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						loadTable();
+					}
+				});
+				lblNewLabel.setIcon(new ImageIcon(ListaCliente.class.getResource("/Images/refresh.png")));
+				buttonPane.add(lblNewLabel);
+				buttonPane.add(btnAgregarCliente);
 				btnModificar.setActionCommand("OK");
 				buttonPane.add(btnModificar);
 				getRootPane().setDefaultButton(btnModificar);
@@ -134,6 +155,20 @@ public class ListaCliente extends JDialog {
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.setViewportView(table);
 			table.setModel(model);
+		}
+	}
+
+	protected void loadTable() {
+		model.setRowCount(0);
+		row = new Object[model.getColumnCount()];
+		for (int i = 0 ; i < Tienda.getInstance().getMisclientes().size();i++) 
+		{
+			row[0] = Tienda.getInstance().getMisclientes().get(i).getNombre();
+			row[1] = Tienda.getInstance().getMisclientes().get(i).getDireccion();
+			row[2] = Tienda.getInstance().getMisclientes().get(i).getTelefono();
+			row[3] = Tienda.getInstance().getMisclientes().get(i).getRnc();
+			row[4] = Tienda.getInstance().getMisclientes().get(i).getCedula();
+			model.addRow(row);
 		}
 	}
 }

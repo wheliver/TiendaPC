@@ -82,6 +82,7 @@ public class componenteNuevo extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	/**
 	public static void main(String[] args) {
 		try {
 			Tienda.getInstance().cargarTienda();
@@ -93,7 +94,7 @@ public class componenteNuevo extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+**/
 	/**
 	 * Create the dialog.
 	 */

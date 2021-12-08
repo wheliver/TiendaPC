@@ -25,6 +25,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 public class RegistroCliente extends JDialog {
 
@@ -46,7 +49,7 @@ public class RegistroCliente extends JDialog {
 
 	/**
 	 * Launch the application.
-	 */
+	 *//**
 	public static void main(String[] args) {
 		try {
 			Tienda.getInstance().cargarTienda();
@@ -64,43 +67,55 @@ public class RegistroCliente extends JDialog {
 	 */
 	public RegistroCliente() {
 		setTitle("Registro Cliente-Factura");
-		setBounds(100, 100, 609, 377);
+		setBounds(100, 100, 609, 406);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(Color.WHITE);
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(10, 95, 572, 224);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			
 			textField_Nombre = new JTextField();
+			textField_Nombre.setBackground(Color.WHITE);
+			textField_Nombre.setBorder(null);
 			textField_Nombre.setEnabled(false);
 			textField_Nombre.setColumns(10);
 			textField_Nombre.setBounds(10, 46, 217, 20);
 			panel.add(textField_Nombre);
 			
 			textField_direccion = new JTextField();
+			textField_direccion.setBorder(null);
+			textField_direccion.setBackground(Color.WHITE);
 			textField_direccion.setEnabled(false);
 			textField_direccion.setColumns(10);
 			textField_direccion.setBounds(10, 107, 217, 20);
 			panel.add(textField_direccion);
 			
 			textField_RNC = new JTextField();
+			textField_RNC.setBorder(null);
+			textField_RNC.setBackground(Color.WHITE);
 			textField_RNC.setEnabled(false);
 			textField_RNC.setColumns(10);
-			textField_RNC.setBounds(10, 163, 217, 20);
+			textField_RNC.setBounds(10, 175, 217, 20);
 			panel.add(textField_RNC);
 			
 			textField_Telefono = new JTextField();
+			textField_Telefono.setBorder(null);
+			textField_Telefono.setBackground(Color.WHITE);
 			textField_Telefono.setEnabled(false);
 			textField_Telefono.setColumns(10);
 			textField_Telefono.setBounds(325, 46, 217, 20);
 			panel.add(textField_Telefono);
 			
 			textField_Cedula = new JTextField();
+			textField_Cedula.setBackground(Color.WHITE);
+			textField_Cedula.setBorder(null);
 			textField_Cedula.setEnabled(false);
 			textField_Cedula.setColumns(10);
 			textField_Cedula.setBounds(325, 107, 217, 20);
@@ -115,7 +130,7 @@ public class RegistroCliente extends JDialog {
 			panel.add(lblDireccion);
 			
 			JLabel lblRnc = new JLabel("RNC");
-			lblRnc.setBounds(86, 138, 46, 14);
+			lblRnc.setBounds(86, 150, 46, 14);
 			panel.add(lblRnc);
 			
 			JLabel lblTelefono = new JLabel("Telefono");
@@ -125,9 +140,54 @@ public class RegistroCliente extends JDialog {
 			JLabel lblCedula = new JLabel("Cedula");
 			lblCedula.setBounds(415, 82, 46, 14);
 			panel.add(lblCedula);
+			
+			JSeparator separator = new JSeparator();
+			separator.setBounds(10, 69, 196, 2);
+			panel.add(separator);
+			
+			JSeparator separator_1 = new JSeparator();
+			separator_1.setBounds(10, 138, 217, 1);
+			panel.add(separator_1);
+			
+			JSeparator separator_2 = new JSeparator();
+			separator_2.setBounds(325, 138, 217, 1);
+			panel.add(separator_2);
+			
+			JSeparator separator_3 = new JSeparator();
+			separator_3.setBounds(325, 77, 217, 1);
+			panel.add(separator_3);
+			
+			JSeparator separator_4 = new JSeparator();
+			separator_4.setBounds(10, 206, 217, 1);
+			panel.add(separator_4);
+			
+			JLabel lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon(RegistroCliente.class.getResource("/Images/usuario.png")));
+			lblNewLabel_1.setBounds(30, 11, 46, 24);
+			panel.add(lblNewLabel_1);
+			
+			JLabel label = new JLabel("");
+			label.setIcon(new ImageIcon(RegistroCliente.class.getResource("/Images/direccion-de-casa.png")));
+			label.setBounds(30, 77, 24, 30);
+			panel.add(label);
+			
+			JLabel label_1 = new JLabel("");
+			label_1.setIcon(new ImageIcon(RegistroCliente.class.getResource("/Images/id-card.png")));
+			label_1.setBounds(30, 150, 46, 26);
+			panel.add(label_1);
+			
+			JLabel label_2 = new JLabel("");
+			label_2.setIcon(new ImageIcon(RegistroCliente.class.getResource("/Images/telefono.png")));
+			label_2.setBounds(375, 11, 30, 24);
+			panel.add(label_2);
+			
+			JLabel label_3 = new JLabel("New label");
+			label_3.setBounds(348, 82, 46, 14);
+			panel.add(label_3);
 		}
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(new TitledBorder(null, "Agregar cedula", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 573, 73);
 		contentPanel.add(panel);
@@ -173,6 +233,7 @@ public class RegistroCliente extends JDialog {
 		panel.add(button);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
