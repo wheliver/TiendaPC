@@ -28,7 +28,6 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtIngreseUnNombre;
 	private JTextField textField_Password;
-	private JButton btnCreateUser;
 	private JButton btnLogin;
 	private JSeparator separator;
 	private JSeparator separator_1;
@@ -124,19 +123,6 @@ public class Login extends JFrame {
 		});
 		btnLogin.setBounds(50, 318, 142, 29);
 		panel.add(btnLogin);
-		
-		btnCreateUser = new JButton("Create user");
-		btnCreateUser.setForeground(SystemColor.window);
-		btnCreateUser.setBackground(SystemColor.textHighlight);
-		btnCreateUser.setFont(new Font("Teko SemiBold", Font.BOLD, 14));
-		btnCreateUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearUser c = new CrearUser();
-				c.setVisible(true);
-			}
-		});
-		btnCreateUser.setBounds(50, 373, 142, 29);
-		panel.add(btnCreateUser);
 		
 		separator = new JSeparator();
 		separator.setBackground(Color.BLACK);

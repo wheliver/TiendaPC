@@ -39,6 +39,8 @@ public Tienda() {
 	public static Tienda getInstance() {
 		if(instanciaGlobal == null) {
 			instanciaGlobal = new Tienda();
+			Usuario user = new Usuario("admin","local","#","Administrador","admin","admin");
+			Tienda.getInstance().insertarUsuario(user);
 		}
 		return instanciaGlobal;
 	}
