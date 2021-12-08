@@ -47,17 +47,18 @@ public class Principal extends JFrame {
 	private JLabel LblX;
 	private JPanel panelHover;
 	private JMenu usuario;
-	private JMenu mnNewMenu_2;
+	private JMenu compoee;
 	private JMenu mnNewMenu_1;
 	private JMenu mnNewMenu_3;
 	private JMenu mnNewMenu;
-	private JMenuItem mntmNewMenuItem_1;
-	private JMenuItem mntmNewMenuItem_3;
+	private JMenuItem ordenc;
+	private JMenuItem lista;
 	private JMenuItem mntmNewMenuItem_2;
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmNewMenuItem_5;
 	private JMenuItem mntmNewMenuItem_7;
 	private JMenuItem introducirusuario;
+	private JMenuItem mntmNewMenuItem_9;
 
 	/**
 	 * Launch the application.
@@ -96,11 +97,11 @@ public class Principal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		mnNewMenu = new JMenu("Vender");
+		mnNewMenu = new JMenu("Ventas");
 		mnNewMenu.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Venta");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Vender");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ventas v= new Ventas();
@@ -116,24 +117,33 @@ public class Principal extends JFrame {
 		mnNewMenu_3.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
 		menuBar.add(mnNewMenu_3);
 		
-		mntmNewMenuItem_3 = new JMenuItem("Lista facturas");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+		lista = new JMenuItem("Lista facturas por cliente ");
+		lista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LisFactura fl = new LisFactura();
 				fl.setVisible(true);
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_3);
+		mnNewMenu_3.add(lista);
 		
-		mntmNewMenuItem_1 = new JMenuItem("Orden Compra");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		ordenc = new JMenuItem("Orden Compra");
+		ordenc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OrdenCompraList ol = new OrdenCompraList();
 				ol.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				ol.setVisible(true);
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_1);
+		mnNewMenu_3.add(ordenc);
+		
+		mntmNewMenuItem_9 = new JMenuItem("Lista Factura Global");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaFacturastotal lff = new ListaFacturastotal (); 
+				lff.setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_9);
 		
 		mnNewMenu_1 = new JMenu("Clientes");
 		mnNewMenu_1.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
@@ -149,9 +159,9 @@ public class Principal extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
-		mnNewMenu_2 = new JMenu("Componentes");
-		mnNewMenu_2.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
-		menuBar.add(mnNewMenu_2);
+		compoee = new JMenu("Componentes");
+		compoee.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		menuBar.add(compoee);
 		
 		mntmNewMenuItem_4 = new JMenuItem("Lista de componentes");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
@@ -160,7 +170,7 @@ public class Principal extends JFrame {
 				lc.setVisible(true);
 			}
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_4);
+		compoee.add(mntmNewMenuItem_4);
 		
 		mntmNewMenuItem_5 = new JMenuItem("Introducir Componete Nuevo");
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
@@ -169,7 +179,7 @@ public class Principal extends JFrame {
 				cn.setVisible(true);
 			}
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_5);
+		compoee.add(mntmNewMenuItem_5);
 		
 		mntmNewMenuItem_7 = new JMenuItem("Crear Combo");
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
@@ -178,7 +188,7 @@ public class Principal extends JFrame {
 				cr.setVisible(true);
 			}
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_7);
+		compoee.add(mntmNewMenuItem_7);
 		
 		usuario = new JMenu("Usuarios ");
 		usuario.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
@@ -186,6 +196,15 @@ public class Principal extends JFrame {
 		
 		introducirusuario = new JMenuItem("Introducir un nuevo vendedor");
 		usuario.add(introducirusuario);
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Lista de Usuarios");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaUsuarios us= new ListaUsuarios();
+				us.setVisible(true);
+			}
+		});
+		usuario.add(mntmNewMenuItem_6);
 		
 		JMenu mnNewMenu_5 = new JMenu("Respaldo");
 		menuBar.add(mnNewMenu_5);
@@ -284,10 +303,16 @@ public class Principal extends JFrame {
 			introducirusuario.setEnabled(true);
 			introducirusuario.setVisible(true);
 			usuario.setEnabled(true);
+			compoee.setEnabled(true);
+			ordenc.setEnabled(true);
+			lista.setEnabled(true);
 		}else {
 			introducirusuario.setEnabled(false);
 			introducirusuario.setVisible(false);
 			usuario.setEnabled(false);
+			compoee.setEnabled(false);
+			ordenc.setEnabled(false);
+			lista.setEnabled(false);
 		}
 	}
 }

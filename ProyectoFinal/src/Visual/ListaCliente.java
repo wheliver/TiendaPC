@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.Cursor;
 
 public class ListaCliente extends JDialog {
 
@@ -129,6 +130,7 @@ public class ListaCliente extends JDialog {
 				});
 				
 				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				lblNewLabel.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {

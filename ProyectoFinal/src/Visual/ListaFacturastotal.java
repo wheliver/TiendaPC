@@ -42,7 +42,6 @@ public class ListaFacturastotal extends JDialog {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private Componente selected = null;
-	private JButton btnModificar;
 	private JComboBox comboBox;
 
 	/**
@@ -93,8 +92,8 @@ public class ListaFacturastotal extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				int aux = table.getSelectedRow();
 				if(aux!=-1){
-					btnModificar.setEnabled(true);
-					String code = (String) table.getValueAt(aux, 0);
+					
+				
 			}
 			}
 		});
@@ -104,21 +103,6 @@ public class ListaFacturastotal extends JDialog {
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				btnModificar = new JButton("Modificar\r\n");
-				btnModificar.setEnabled(false);
-				btnModificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if(selected!=null){
-							componenteNuevo cq = new componenteNuevo();
-							cq.setVisible(true);
-						}
-					}
-				});
-				btnModificar.setActionCommand("OK");
-				buttonPane.add(btnModificar);
-				getRootPane().setDefaultButton(btnModificar);
-			}
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
