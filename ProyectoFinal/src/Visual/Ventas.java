@@ -124,8 +124,8 @@ public class Ventas extends JDialog {
 				Componente c =null;
 				int cambio=0;
 				Combos d=null;
-				auxiliarCarito2 e1 = new auxiliarCarito2(0, d);
-				auxiliarCarrito b = new auxiliarCarrito(0, c);
+				auxiliarCarito2 e1 = new auxiliarCarito2(0, null);
+				auxiliarCarrito b= new auxiliarCarrito(0, null),b1= new auxiliarCarrito(0, null),b2= new auxiliarCarrito(0, null),b3 = new auxiliarCarrito(0, null);
 				boolean aux = false;
 				
 				if( Integer.valueOf(spncombo.getValue().toString())>0) {
@@ -246,20 +246,26 @@ public class Ventas extends JDialog {
 									}
 							}
 					 if(aux==false) {
+						 JOptionPane.showMessageDialog(null,"entre");
+
 						 if(c.getCantidadDisponible()-(Integer.valueOf(spndisco.getValue().toString()))>=c.getCantidadminima()) {
 								
 							 b.setCarrito(c);
 								b.setCantidad(Integer.valueOf(spndisco.getValue().toString()));
-								 carrito1.add(b);}else {
+								 carrito1.add(b);
+								 JOptionPane.showMessageDialog(null,"llene");
+								 JOptionPane.showMessageDialog(null,carrito1.get(0).getCantidad());
+								 JOptionPane.showMessageDialog(null,carrito1.get(0).getCarrito().getNombre());
+						 }else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el disco");
 
 								 }
 					 }
 								}
+				
 				cambio=0;
 				aux=false;
-				b.setCantidad(0);
-				b.setCarrito(null);
+			
 				if( Integer.valueOf(spntargeta.getValue().toString())>0) {
 					 c = Tienda.getInstance().buscarcomponente(combotargeta.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
@@ -267,9 +273,9 @@ public class Ventas extends JDialog {
 							 cambio = a.getCantidad();
 							 if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spntargeta.getValue().toString()))>=c.getCantidadminima()) {
 							carrito1.remove(a);
-							 b.setCarrito(c);
-								b.setCantidad(cambio+Integer.valueOf(spntargeta.getValue().toString()));
-								 carrito1.add(b);
+							 b1.setCarrito(c);
+								b1.setCantidad(cambio+Integer.valueOf(spntargeta.getValue().toString()));
+								 carrito1.add(b1);
 							
 								aux=true;}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la targeta");
@@ -281,9 +287,9 @@ public class Ventas extends JDialog {
 						// 
 						 if(c.getCantidadDisponible()-(Integer.valueOf(spntargeta.getValue().toString()))>=c.getCantidadminima()) {
 							
-					 b.setCarrito(c);
-						b.setCantidad(Integer.valueOf(spntargeta.getValue().toString()));
-						 carrito1.add(b);}else {
+					 b1.setCarrito(c);
+						b1.setCantidad(Integer.valueOf(spntargeta.getValue().toString()));
+						 carrito1.add(b1);}else {
 							 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la targeta");
 
 						 }
@@ -291,8 +297,7 @@ public class Ventas extends JDialog {
 				}
 				cambio=0;
 				aux=false;
-				b.setCantidad(0);
-				b.setCarrito(null);
+				
 				if( Integer.valueOf(spnram.getValue().toString())>0) {
 					 c = Tienda.getInstance().buscarcomponente(comboram.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
@@ -300,9 +305,9 @@ public class Ventas extends JDialog {
 							 cambio = a.getCantidad();
 							 if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spnram.getValue().toString()))>=c.getCantidadminima()) {
 							carrito1.remove(a);
-							 b.setCarrito(c);
-								b.setCantidad(cambio+Integer.valueOf(spnram.getValue().toString()));
-								 carrito1.add(b);
+							 b2.setCarrito(c);
+								b2.setCantidad(cambio+Integer.valueOf(spnram.getValue().toString()));
+								 carrito1.add(b2);
 							
 								aux=true;}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la MemoriaRam");
@@ -313,9 +318,9 @@ public class Ventas extends JDialog {
 					 if(aux==false) {
 						 if(c.getCantidadDisponible()-(Integer.valueOf(spnram.getValue().toString()))>=c.getCantidadminima()) {
 								
-							 b.setCarrito(c);
-								b.setCantidad(Integer.valueOf(spnram.getValue().toString()));
-								 carrito1.add(b);}else {
+							 b2.setCarrito(c);
+								b2.setCantidad(Integer.valueOf(spnram.getValue().toString()));
+								 carrito1.add(b2);}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la MemoriaRam");
 
 								 }
@@ -323,8 +328,7 @@ public class Ventas extends JDialog {
 				}
 				cambio=0;
 				aux=false;
-				b.setCantidad(0);
-				b.setCarrito(null);
+				
 				if( Integer.valueOf(spnprocesador.getValue().toString())>0) {
 					 c = Tienda.getInstance().buscarcomponente(comboprocesador.getSelectedItem().toString());	
 					 for (auxiliarCarrito a : carrito1) {
@@ -332,9 +336,9 @@ public class Ventas extends JDialog {
 							 cambio = a.getCantidad();
 							 if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spnprocesador.getValue().toString()))>=c.getCantidadminima()) {
 							carrito1.remove(a);
-							 b.setCarrito(c);
-								b.setCantidad(cambio+Integer.valueOf(spnprocesador.getValue().toString()));
-								 carrito1.add(b);
+							 b3.setCarrito(c);
+								b3.setCantidad(cambio+Integer.valueOf(spnprocesador.getValue().toString()));
+								 carrito1.add(b3);
 						
 								aux=true;}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el procesador");
@@ -345,19 +349,19 @@ public class Ventas extends JDialog {
 					 if(aux==false) {
 						 if(c.getCantidadDisponible()-(Integer.valueOf(spnprocesador.getValue().toString()))>=c.getCantidadminima()) {
 								
-							 b.setCarrito(c);
-								b.setCantidad(Integer.valueOf(spnprocesador.getValue().toString()));
-								 carrito1.add(b);}else {
+							 b3.setCarrito(c);
+								b3.setCantidad(Integer.valueOf(spnprocesador.getValue().toString()));
+								 carrito1.add(b3);}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el Microprocesador");
 
 								 }
 					 }
 				}
 				aux=false;
-				
-				limpiar();
-			
+							
 				loadTable();
+				limpiar();
+						
 				indentificador.setText("Componentes Agregados");
 				
 				
@@ -389,22 +393,11 @@ public class Ventas extends JDialog {
 					
 					selected = Tienda.getInstance().buscarcomponente((String) table.getValueAt(select, 0));
 					selected1=Tienda.getInstance().buscarcombo((String) table.getValueAt(select, 0));
-					//agregar.setVisible(true);
-				//	agregar.setEnabled(true);
 					quitar.setVisible(true);
 					quitar.setEnabled(true);
 					indentificador.setEnabled(true);
 					indentificador.setVisible(true);
-					
-					/*if (selected.getCantidadDisponible()>0) {
-						indentificador.setText("Disponible para agregar");
-										
-					}else {
-						indentificador.setText("Queso agregado a la lista");
-					}*/
-		
-					
-				
+									
 				}else {
 					quitar.setVisible(false);
 					quitar.setEnabled(false);
@@ -436,7 +429,7 @@ public class Ventas extends JDialog {
 						carrito2.remove(b);
 						}
 					 }}
-				// loadTable();
+				 loadTable();
 			}
 		});
 		quitar.setEnabled(false);
@@ -718,10 +711,7 @@ public class Ventas extends JDialog {
 		comboprocesador.setSelectedIndex(0);
 		
 	}
-	public void resetear() {
-		table.removeAll();
-	}
-	
+		
 	public void loadTable () {
 		model.setRowCount(0);
 		 row = new Object[(model.getColumnCount())];
@@ -735,11 +725,11 @@ public class Ventas extends JDialog {
 				}
 		 for (auxiliarCarrito pu : carrito1){
 				
-				row[0]=pu.getCarrito().getNombre();
+			 row[0]=pu.getCarrito().getNombre();
 			    row[1]=pu.getCantidad();
 				row[2] =pu.preciototal();
-				model.addRow(row);
-				}
+				model.addRow(row);}
+				
 				}
 	public void loadComponente() {
 		 ArrayList<Componente> compo = Tienda.getInstance().getMiscomponentes();

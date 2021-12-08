@@ -242,21 +242,7 @@ public class RegistroCliente extends JDialog {
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
-						
-						Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getText(),textField_Cedula.getText());
-						Tienda.getInstance().insertarCliente(a);
-						Tienda.getInstance().guardarTienda();
-						 JOptionPane.showMessageDialog(null,"Registro Satisfactorio","Informacion",JOptionPane.INFORMATION_MESSAGE);
-						 dispose();						 
-		                 //clean();
-						 
-		                 textField_Nombre.setEnabled(false);
-							textField_direccion.setEnabled(false);
-							textField_RNC.setEnabled(false);
-							textField_Telefono.setEnabled(false);
-							textField_Cedula.setEnabled(false);
-							}
+					
 					
 						if(RegistrarButton.getText().equalsIgnoreCase("Comprar")) {
 							Componente ac = null;
@@ -366,7 +352,31 @@ public class RegistroCliente extends JDialog {
 							dispose();
 						}
 							
-					}}
+					}
+						if(RegistrarButton.getText().equalsIgnoreCase("Registrar")) {
+							
+							Cliente a = new Cliente(textField_Nombre.getText(),textField_direccion.getText(),textField_Telefono.getText(),textField_RNC.getText(),textField_Cedula.getText());
+							Tienda.getInstance().insertarCliente(a);
+							Tienda.getInstance().guardarTienda();
+							 JOptionPane.showMessageDialog(null,"Registro Satisfactorio","Informacion",JOptionPane.INFORMATION_MESSAGE);
+													 
+			                 //clean();
+							 cli = Tienda.getInstance().buscarCliente(textField_Cedula.getText().toString());
+							 textField_Nombre.setText(cli.getNombre());
+					    		textField_direccion.setText(cli.getDireccion());
+					    		textField_RNC.setText(cli.getRnc());
+					    		textField_Telefono.setText(cli.getTelefono());
+					    		textField_Cedula.setText(cli.getCedula());
+					    		
+			                 textField_Nombre.setEnabled(false);
+								textField_direccion.setEnabled(false);
+								textField_RNC.setEnabled(false);
+								textField_Telefono.setEnabled(false);
+								textField_Cedula.setEnabled(false);
+								
+								 RegistrarButton.setText("Comprar");
+								}
+						}
 				});
 				RegistrarButton.setActionCommand("OK");
 				buttonPane.add(RegistrarButton);
