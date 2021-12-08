@@ -302,6 +302,7 @@ public class RegistroCliente extends JDialog {
 									}}
 								} 
 								 dispose();
+									verfactura(fa);
 														}
 							if(s==0) {
 								//credito
@@ -350,6 +351,7 @@ public class RegistroCliente extends JDialog {
 							}
 						//	JOptionPane.showOptionDialog(RegistrarButton,"Selecciones un Metodo de Pago","Metodos De Pago",JOptionPane.YES_NO_CANCEL_OPTION,null,JOptionPane.QUESTION_MESSAGE,new Object[] { "Credito", "Contado", "Cancel"});
 							dispose();
+							verfactura(fa);
 						}
 							
 					}
@@ -416,5 +418,19 @@ public class RegistroCliente extends JDialog {
 	public void setusuario(Usuario user2) {
 		// TODO Auto-generated method stub
 		user=user2;
+	}
+	public void verfactura(Factura fa) {
+		Factura selected = fa;
+		Representacionvisualdefactura rp = new Representacionvisualdefactura();
+		rp.setCodigo(selected.getCodigo());
+		rp.setCliente(selected.getCliente().getNombre());
+		rp.setEstado(selected.isPagado());
+		rp.setTipodepago(selected.getTipodepago());
+		rp.setVendedor(selected.getVendedor().getNombre());
+		rp.setTotal(String.valueOf(selected.getpreciototal()));
+		rp.setCarrito1(selected.getMiscomponentes());
+		rp.setCarrito2(selected.getMiscombos());
+		rp.loadTable();
+		rp.setVisible(true);
 	}
 }
