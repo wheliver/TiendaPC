@@ -246,16 +246,14 @@ public class Ventas extends JDialog {
 									}
 							}
 					 if(aux==false) {
-						 JOptionPane.showMessageDialog(null,"entre");
+						
 
 						 if(c.getCantidadDisponible()-(Integer.valueOf(spndisco.getValue().toString()))>=c.getCantidadminima()) {
 								
 							 b.setCarrito(c);
 								b.setCantidad(Integer.valueOf(spndisco.getValue().toString()));
 								 carrito1.add(b);
-								 JOptionPane.showMessageDialog(null,"llene");
-								 JOptionPane.showMessageDialog(null,carrito1.get(0).getCantidad());
-								 JOptionPane.showMessageDialog(null,carrito1.get(0).getCarrito().getNombre());
+								
 						 }else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el disco");
 
