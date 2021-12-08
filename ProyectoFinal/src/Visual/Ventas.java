@@ -133,17 +133,99 @@ public class Ventas extends JDialog {
 				 d = Tienda.getInstance().buscarcombo(combo.getSelectedItem().toString());	
 							 for (auxiliarCarito2 a : carrito2) {
 						 if(d==a.getCarrito()) {
-								
-							 a.setCantidad(a.getCantidad()+Integer.valueOf(spncombo.getValue().toString()));
-								aux=true;
-							}
+							 cambio = a.getCantidad();
+							 
+							 boolean comprobar=true ;
+							 for (Componente compi : d.getMiscomponentes()) {
+								 c = Tienda.getInstance().buscarcomponente(compi.getNombre());	
+								 if(compi instanceof TarjetaMadre) {
+											if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+										}else {
+											comprobar = false ;
+											 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la targeta");
+
+											}
+										}
+										if(compi instanceof MemoriaRam) {
+											if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+											}else {
+												comprobar = false ;
+												 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la MemoriaRam");
+
+												}	
+											}
+										
+										 if(compi instanceof Microprocesador) {
+												if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+												}else {
+													comprobar = false ;
+													 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el microprosesador");
+
+													}
+												}
+										 if(compi instanceof Discoduro) {
+												if(c.getCantidadDisponible()-(cambio+Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+												}else {
+													comprobar = false ;
+													 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el disco");
+
+													}
+												}}
+							 	if(comprobar==true) {								
+							  carrito2.remove(a);
+							 e1.setCarrito(d);
+								e1.setCantidad(cambio+Integer.valueOf(spncombo.getValue().toString()));
+								 carrito2.add(e1);
+								 aux=true;}
+						}
 					}
 					 if(aux==false) {
+						 
+						 boolean comprobar=true ;
+						 for (Componente compi : d.getMiscomponentes()) {
+							 c = Tienda.getInstance().buscarcomponente(compi.getNombre());	
+							 if(compi instanceof TarjetaMadre) {
+										if(c.getCantidadDisponible()-(Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+									}else {
+										comprobar = false ;
+										 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la targeta");
+
+										}
+									}
+									if(compi instanceof MemoriaRam) {
+										if(c.getCantidadDisponible()-(Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+										}else {
+											comprobar = false ;
+											 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la MemoriaRam");
+
+											}	
+										}
+									
+									 if(compi instanceof Microprocesador) {
+											if(c.getCantidadDisponible()-(Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+											}else {
+												comprobar = false ;
+												 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el microprosesador");
+
+												}
+											}
+									 if(compi instanceof Discoduro) {
+											if(c.getCantidadDisponible()-(Integer.valueOf(spncombo.getValue().toString()))>=c.getCantidadminima()) {
+											}else {
+												comprobar = false ;
+												 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el disco");
+
+												}
+											}}
+						 
+						 if(comprobar==true) {
 						  e1.setCarrito(d);
 						 e1.setCantidad(Integer.valueOf(spncombo.getValue().toString()));
 						 carrito2.add(e1);
+						 }
 					 }
 								}
+				cambio=0;
 				aux=false;
 				
 				if( Integer.valueOf(spndisco.getValue().toString())>0) {
@@ -156,7 +238,7 @@ public class Ventas extends JDialog {
 									 b.setCarrito(c);
 										b.setCantidad(cambio+Integer.valueOf(spndisco.getValue().toString()));
 										 carrito1.add(b);
-									 //a.setCantidad(+Integer.valueOf(spntargeta.getValue().toString()));
+									
 										aux=true;}else {
 											 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el disco");
 
@@ -174,7 +256,7 @@ public class Ventas extends JDialog {
 								 }
 					 }
 								}
-				
+				cambio=0;
 				aux=false;
 				b.setCantidad(0);
 				b.setCarrito(null);
@@ -188,7 +270,7 @@ public class Ventas extends JDialog {
 							 b.setCarrito(c);
 								b.setCantidad(cambio+Integer.valueOf(spntargeta.getValue().toString()));
 								 carrito1.add(b);
-							 //a.setCantidad(+Integer.valueOf(spntargeta.getValue().toString()));
+							
 								aux=true;}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la targeta");
 
@@ -207,6 +289,7 @@ public class Ventas extends JDialog {
 						 }
 					 }
 				}
+				cambio=0;
 				aux=false;
 				b.setCantidad(0);
 				b.setCarrito(null);
@@ -220,7 +303,7 @@ public class Ventas extends JDialog {
 							 b.setCarrito(c);
 								b.setCantidad(cambio+Integer.valueOf(spnram.getValue().toString()));
 								 carrito1.add(b);
-							 //a.setCantidad(+Integer.valueOf(spntargeta.getValue().toString()));
+							
 								aux=true;}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para la MemoriaRam");
 
@@ -238,6 +321,7 @@ public class Ventas extends JDialog {
 								 }
 					 }
 				}
+				cambio=0;
 				aux=false;
 				b.setCantidad(0);
 				b.setCarrito(null);
@@ -251,7 +335,7 @@ public class Ventas extends JDialog {
 							 b.setCarrito(c);
 								b.setCantidad(cambio+Integer.valueOf(spnprocesador.getValue().toString()));
 								 carrito1.add(b);
-							 //a.setCantidad(+Integer.valueOf(spntargeta.getValue().toString()));
+						
 								aux=true;}else {
 									 JOptionPane.showMessageDialog(null,"No hay suficientes componentes para hacer el cambio en el pedido por favor escojer una sifra menor o igual que :"+String.valueOf(c.getCantidadDisponible()-c.getCantidadminima())+"para el procesador");
 
@@ -272,7 +356,7 @@ public class Ventas extends JDialog {
 				aux=false;
 				
 				limpiar();
-			//	resetear();
+			
 				loadTable();
 				indentificador.setText("Componentes Agregados");
 				
