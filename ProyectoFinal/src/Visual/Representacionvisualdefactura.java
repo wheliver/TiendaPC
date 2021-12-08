@@ -27,6 +27,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 public class Representacionvisualdefactura extends JDialog {
 
@@ -55,52 +58,59 @@ public class Representacionvisualdefactura extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	*/
 
-	/**
+	/*
 	 * Create the dialog.
 	 */
 	public Representacionvisualdefactura() {
-		setBounds(100, 100, 658, 530);
+		setBounds(100, 100, 658, 578);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("    Factura de Venta");
 		lblNewLabel.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 50));
-		lblNewLabel.setBounds(143, 11, 400, 55);
+		lblNewLabel.setBounds(121, 0, 400, 46);
 		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("CODIGO:");
-		lblNewLabel_1.setBounds(10, 69, 56, 14);
+		lblNewLabel_1.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(63, 57, 56, 14);
 		contentPanel.add(lblNewLabel_1);
 		
 		JLabel lblCliente = new JLabel("CLIENTE:");
-		lblCliente.setBounds(10, 94, 56, 14);
+		lblCliente.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblCliente.setBounds(63, 95, 56, 14);
 		contentPanel.add(lblCliente);
 		
 		JLabel lblVendedor = new JLabel("VENDEDOR:");
-		lblVendedor.setBounds(10, 119, 72, 14);
+		lblVendedor.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblVendedor.setBounds(63, 137, 74, 14);
 		contentPanel.add(lblVendedor);
 		
-		JLabel lblTipoDePago = new JLabel("Tipo de Pago");
-		lblTipoDePago.setBounds(409, 69, 85, 14);
+		JLabel lblTipoDePago = new JLabel("Tipo de Pago:");
+		lblTipoDePago.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblTipoDePago.setBounds(402, 69, 85, 14);
 		contentPanel.add(lblTipoDePago);
 		
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(409, 94, 72, 14);
+		lblEstado.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblEstado.setBounds(409, 107, 72, 14);
 		contentPanel.add(lblEstado);
 		
 		codigo = new JLabel("");
-		codigo.setBounds(66, 69, 296, 14);
+		codigo.setBounds(119, 57, 200, 14);
 		contentPanel.add(codigo);
 		
 		cliente = new JLabel("");
-		cliente.setBounds(66, 94, 296, 14);
+		cliente.setBounds(119, 95, 200, 14);
 		contentPanel.add(cliente);
 		
 		vendedor = new JLabel("");
-		vendedor.setBounds(86, 119, 276, 14);
+		vendedor.setBounds(147, 137, 200, 14);
 		contentPanel.add(vendedor);
 		
 		tipodepago = new JLabel("");
@@ -108,10 +118,11 @@ public class Representacionvisualdefactura extends JDialog {
 		contentPanel.add(tipodepago);
 		
 		estado = new JLabel("");
-		estado.setBounds(466, 94, 166, 14);
+		estado.setBounds(456, 107, 166, 14);
 		contentPanel.add(estado);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -127,7 +138,7 @@ public class Representacionvisualdefactura extends JDialog {
 			{
 				JScrollPane scrollPane2 = new JScrollPane();
 				scrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-				scrollPane2.setBounds(10, 155, 622, 261);
+				scrollPane2.setBounds(10, 184, 622, 286);
 				contentPanel.add(scrollPane2, BorderLayout.CENTER);
 				
 				table = new JTable();
@@ -142,12 +153,63 @@ public class Representacionvisualdefactura extends JDialog {
 		}
 		
 		JLabel lblTotal = new JLabel("TOTAL:");
-		lblTotal.setBounds(471, 427, 72, 14);
+		lblTotal.setFont(new Font("Microsoft YaHei", Font.BOLD, 12));
+		lblTotal.setBounds(471, 481, 72, 14);
 		contentPanel.add(lblTotal);
 		
 		total = new JLabel("");
-		total.setBounds(520, 427, 112, 14);
+		total.setBounds(520, 481, 112, 14);
 		contentPanel.add(total);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(Color.BLACK);
+		separator.setBounds(119, 82, 200, 2);
+		contentPanel.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBackground(Color.BLACK);
+		separator_1.setBounds(119, 120, 200, 2);
+		contentPanel.add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBackground(Color.BLACK);
+		separator_2.setBounds(147, 162, 200, 2);
+		contentPanel.add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBackground(Color.BLACK);
+		separator_3.setBounds(497, 94, 135, 2);
+		contentPanel.add(separator_3);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBackground(Color.BLACK);
+		separator_4.setBounds(456, 132, 166, 2);
+		contentPanel.add(separator_4);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(Representacionvisualdefactura.class.getResource("/Images/usuario.png")));
+		lblNewLabel_2.setBounds(34, 85, 30, 24);
+		contentPanel.add(lblNewLabel_2);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Representacionvisualdefactura.class.getResource("/Images/escaner-de-codigo-de-barras.png")));
+		label.setBounds(34, 44, 30, 40);
+		contentPanel.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(Representacionvisualdefactura.class.getResource("/Images/vendedor.png")));
+		label_1.setBounds(34, 129, 30, 33);
+		contentPanel.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(Representacionvisualdefactura.class.getResource("/Images/efectivo.png")));
+		label_2.setBounds(374, 57, 30, 24);
+		contentPanel.add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(Representacionvisualdefactura.class.getResource("/Images/estados-financieros.png")));
+		label_3.setBounds(374, 96, 30, 24);
+		contentPanel.add(label_3);
 		loadTable();
 	}
 	public void loadTable () {
